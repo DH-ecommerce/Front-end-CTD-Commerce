@@ -1,6 +1,7 @@
 import React from 'react';
-import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Container, Nav } from 'react-bootstrap';
 import { CgShoppingCart } from 'react-icons/cg';
+import logo from '../../../assets/logo.svg';
 
 export default function Header() {
   return (
@@ -8,7 +9,9 @@ export default function Header() {
       <Navbar expand='lg'>
         <Container>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
-          <Navbar.Brand href='#home'>NeoTech</Navbar.Brand>
+          <Navbar.Brand href='#home'>
+            <img src={logo} alt='logo' style={{ width: '40px' }} /> NeoTech
+          </Navbar.Brand>
           <CgShoppingCart style={{ fontSize: '28px' }} />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='me-auto'>
