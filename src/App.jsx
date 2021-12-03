@@ -1,11 +1,5 @@
-import './App.scss';
-
 function App() {
-  return (
-<>
-TESTE
-</>
-  );
+  return <>TESTE</>;
 }
 
 export default App;
