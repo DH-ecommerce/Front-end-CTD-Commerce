@@ -1,5 +1,6 @@
 import './index.scss';
 import React from 'react';
+import { BsFillStarFill } from "react-icons/bs"
 import Card from 'react-bootstrap/Card'
 
 export default function CardProduct({ img, title, price, category}) {
@@ -13,11 +14,15 @@ export default function CardProduct({ img, title, price, category}) {
             <Card.Title>{title}</Card.Title>
             <Card.Subtitle className="mb-2 text-muted">BRL {price}</Card.Subtitle>
           </Card.Body>
-          <Card.Footer>
-            <small className="text-muted">{} 4.7</small>
-            <small className="text-muted">  </small>
-            <small className="text-muted">  </small>
+
+          <Card.Footer className="d-flex justify-content-between" >
+            <div>
+          <BsFillStarFill/><small className="text-muted"> 4.7</small>
+          </div>
+
+            <div>
             <small className="text-muted">38 Reviews</small>
+            </div>
           </Card.Footer>
         </Card>
       </>
