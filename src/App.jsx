@@ -1,5 +1,15 @@
+import React from 'react'
+import Filter from './pages/components/Filter'
+
 function App() {
-  return <>TESTE</>;
+  return (
+  <>
+    TESTE
+    <Filter />
+
+
+  </>
+  )
 }
 
 export default App;
