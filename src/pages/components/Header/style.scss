@@ -8,10 +8,7 @@
 
 .gridItem {
   order: 3;
-}
-
-@media (max-width: 991.98px) {
-  .gridItem {
+  @media (max-width: 991.98px) {
     order: 0;
   }
 }
