@@ -8,7 +8,7 @@ export default function CardGrid() {
   return (
     <>
       <Container className="justify-content-center align-items-center">
-
+        
         <Row xs={1} md={2} className="g-4">
 
           {

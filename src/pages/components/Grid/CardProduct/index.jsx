@@ -7,7 +7,7 @@ export default function CardProduct({ img, title, price, category}) {
     return (
       <>
       
-        <Card>
+        <Card className=''>
           {<Card.Img src={img} />}
           <Card.Body>
             <Card.Subtitle className="mb-2 text-muted">{category}</Card.Subtitle>
@@ -17,7 +17,7 @@ export default function CardProduct({ img, title, price, category}) {
 
           <Card.Footer className="d-flex justify-content-between" >
             <div>
-          <BsFillStarFill/><small className="text-muted"> 4.7</small>
+          <BsFillStarFill className='mb-1'/><small className="text-muted"> 4.7</small>
           </div>
 
             <div>
