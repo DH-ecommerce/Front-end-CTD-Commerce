@@ -1,3 +1,15 @@
-.card-footer svg{
-    margin-bottom: 4.5px;
+
+.card{
+border-radius: 15px;
+border-color: transparent;
+}
+
+.card img{
+    border-radius: 15px;
+}
+
+.d-flex{
+    @media screen and (max-width:360px){
+        display: block !important;
+    }
 }
