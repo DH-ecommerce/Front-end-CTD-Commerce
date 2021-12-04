@@ -13,11 +13,11 @@ export default function CardCart({
 }) {
   return (
     <Col sm={12}>
-      <Card>
-        <Card.Img className='card-image' variant='top' src={product.image[0]} />
-        <Card.Body>
-          <Card.Title>{product.title}</Card.Title>
-          <Card.Text>USD {product.price}</Card.Text>
+      <Card className='card_card'>
+        <Card.Img className='card_image' variant='top' src={product.image[0]} />
+        <Card.Body className='card_body'>
+          <Card.Title className='card_title'>{product.title}</Card.Title>
+          <Card.Text className='card_text'>USD {product.price}</Card.Text>
           <div className='btns-card-cart-div'>
             <div className='btn-quantity'>
               <button onClick={onRemoveItemCart.bind(null, product.id)}>
