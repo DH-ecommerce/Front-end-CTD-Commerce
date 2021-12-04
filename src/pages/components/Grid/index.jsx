@@ -7,7 +7,7 @@ import productList from '../Grid/assets/API'
 export default function CardGrid() {
   return (
     <>
-      <Container className="justify-content-center align-items-center">
+      <Container className="justify-content-center align-items-center pt-5 pb-5 ">
         
         <Row xs={1} md={2} className="g-4">
 
