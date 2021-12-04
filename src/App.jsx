@@ -1,8 +1,8 @@
-import Grid from './pages/components/Grid/index'
+import CardCarousel from './pages/components/CardCarousel';
 function App() {
   return (
     <>
-      <Grid/>
+      <CardCarousel/>
 
     </>
   );
