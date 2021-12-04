@@ -3,7 +3,7 @@ import { Navbar, Container, Nav } from 'react-bootstrap';
 import { CgShoppingCart } from 'react-icons/cg';
 import logo from '../../../assets/logo.svg';
 import './style.scss';
-import { Link } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
 
 export default function Header() {
   return (
@@ -11,15 +11,28 @@ export default function Header() {
       <Navbar expand='lg' className='my-3'>
         <Container className='gridNavbar'>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
-          <Navbar.Brand href='index.html'>
-            <img src={logo} alt='logo' style={{ width: '40px' }} /> NeoTech
-          </Navbar.Brand>
-          <CgShoppingCart style={{ fontSize: '28px' }} className='gridItem' />
+          <LinkContainer to='/'>
+            <Navbar.Brand href='index.html'>
+              <img src={logo} alt='logo' style={{ width: '40px' }} /> NeoTech
+            </Navbar.Brand>
+          </LinkContainer>
+          <LinkContainer
+            to='/shoppingCart'
+            style={{ fontSize: '28px', cursor: 'pointer' }}
+          >
+            <CgShoppingCart className='gridItem' />
+          </LinkContainer>
           <Navbar.Collapse id='basic-navbar-nav'>
-            <Nav className='me-auto'>
-              <Link to="/">Home</Link>
-              <Link to="/products">Products</Link>
-              <Link to="/team">Team</Link>
+            <Nav className='me-auto' as='ul'>
+              <LinkContainer to='/'>
+                <Nav.Link as='li'>Home</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to='/products'>
+                <Nav.Link as='li'>Products</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to='/team'>
+                <Nav.Link as='li'>Team</Nav.Link>
+              </LinkContainer>
             </Nav>
           </Navbar.Collapse>
         </Container>
