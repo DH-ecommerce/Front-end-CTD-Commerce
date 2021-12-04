@@ -1,5 +1,9 @@
+import profile_review from "./pages/components/client_review/index"
+
 function App() {
-  return <>TESTE</>;
+  return (<>
+    <profile_review />
+  </>)
 }
 
 export default App;
