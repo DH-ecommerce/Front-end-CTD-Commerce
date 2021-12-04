@@ -1,0 +1,15 @@
+
+.card{
+border-radius: 15px;
+border-color: transparent;
+}
+
+.card img{
+    border-radius: 15px;
+}
+
+.d-flex{
+    @media screen and (max-width:360px){
+        display: block !important;
+    }
+}
