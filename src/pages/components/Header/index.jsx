@@ -3,6 +3,7 @@ import { Navbar, Container, Nav } from 'react-bootstrap';
 import { CgShoppingCart } from 'react-icons/cg';
 import logo from '../../../assets/logo.svg';
 import './style.scss';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
   return (
@@ -16,9 +17,9 @@ export default function Header() {
           <CgShoppingCart style={{ fontSize: '28px' }} className='gridItem' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='me-auto'>
-              <Nav.Link href='index.html'>Home</Nav.Link>
-              <Nav.Link href='index.html'>Products</Nav.Link>
-              <Nav.Link href='index.html'>Team</Nav.Link>
+              <Link to="/">Home</Link>
+              <Link to="/products">Products</Link>
+              <Link to="/team">Team</Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
