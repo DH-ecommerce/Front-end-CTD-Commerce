@@ -1,0 +1,17 @@
+.navbar-brand {
+  padding-bottom: 0;
+}
+.gridNavbar {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.gridItem {
+  order: 3;
+}
+
+@media (max-width: 991.98px) {
+  .gridItem {
+    order: 0;
+  }
+}
