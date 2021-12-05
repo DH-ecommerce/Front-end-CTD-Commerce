@@ -1,4 +1,4 @@
-import {Container, Col, Row } from 'react-bootstrap';
+import {Container, Col} from 'react-bootstrap';
 // import {Link} from "react-router-dom";
 import productList from '../Grid/assets/API';
 import OneCard from './Card';
