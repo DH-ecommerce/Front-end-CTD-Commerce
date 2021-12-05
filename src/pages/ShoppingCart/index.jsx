@@ -3,9 +3,8 @@ import { listProducts } from '../../assets/data/data.js';
 import CardCart from '../components/CardCart';
 import List from '../components/List';
 import Cart from '../components/Cart';
-// import {Button} from 'react-bootstrap';
 
-export default function CartPage() {
+export default function ShoppingCart() {
   const [cartItems, setCartItems] = React.useState({});
 
   const setItemCart = (product) => {
