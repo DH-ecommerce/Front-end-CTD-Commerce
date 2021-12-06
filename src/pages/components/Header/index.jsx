@@ -14,7 +14,7 @@ export default function Header() {
           <Navbar.Brand href='index.html'>
             <img src={logo} alt='logo' style={{ width: '40px' }} /> NeoTech
           </Navbar.Brand>
-          <CgShoppingCart style={{ fontSize: '28px' }} className='gridItem' />
+          <Link to="/shoppingCart"><CgShoppingCart style={{ fontSize: '28px' }} className='gridItem' /></Link>
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='me-auto'>
               <Link to="/">Home</Link>
