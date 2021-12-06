@@ -53,7 +53,7 @@ const Filter = () => {
                   {radiosCategory.map((radio, idx) => (
                     <ToggleButton
                       className='buttons-categories shadow-none'
-                      key="toggle-check"
+                      key= {idx}
                       id={`checkbox-${radio.value}`}
                       type="checkbox"
                       variant="outline-success"
