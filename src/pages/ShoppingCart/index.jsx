@@ -3,7 +3,8 @@ import { listProducts } from '../../assets/data/data.js';
 import CardCart from '../components/CardCart';
 import List from '../components/List';
 import Cart from '../components/Cart';
-import {Container} from 'react-bootstrap';
+import {Container, Button} from 'react-bootstrap';
+import "./style.scss"
 
 export default function ShoppingCart() {
   const [cartItems, setCartItems] = React.useState({});
@@ -49,7 +50,7 @@ export default function ShoppingCart() {
     }
   }
   return (
-    <Container className="shop-cart-container">
+    <div className="shop-cart-container">
       <List>
         {listProducts.map((product, index) => (
           <CardCart
@@ -62,7 +63,7 @@ export default function ShoppingCart() {
         ))}
       </List>
       <Cart items={cartItems} />
-      {/* <button className="btn-checkout">Proceed to Checkout</button> */}
-    </Container>
+     
+    </div>
   );
 }
