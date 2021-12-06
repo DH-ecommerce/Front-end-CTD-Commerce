@@ -28,7 +28,7 @@ export default function CardCart({
                 <img src={add} alt='' />
               </button>
             </div>
-            <img src={bin} alt='' />
+            <img className="bin-image" src={bin} alt='' />
           </div>
         </Card.Body>
       </Card>
