@@ -1,9 +1,9 @@
-import Banner from '../components/Banner';
+import SingleProduct from '../SingleProductDesktop';
 
 function Home() {
   return (
     <>
-      <Banner />
+      <SingleProduct />
     </>
   );
 }
