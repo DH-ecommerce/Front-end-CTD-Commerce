@@ -23,7 +23,7 @@ export default function CardProduct({ id, img, title, price, category }) {
         <Card >
           <Card.Img src={img} variant="top" style={{  maxHeight: '20vh', objectFit: 'contain', minHeight: '20vh'}} />
           <Card.Body>
-            <Card.Subtitle className="mb-2 text-muted">{category}</Card.Subtitle>
+            <Card.Subtitle className="mb-2 text-muted category-subtitle">{category}</Card.Subtitle>
             <Card.Title><Link className='no-style' to={`/products/${id}`}>{title}</Link></Card.Title>
             <Card.Subtitle className="mb-2 text-muted">BRL {price}</Card.Subtitle>
           </Card.Body>
