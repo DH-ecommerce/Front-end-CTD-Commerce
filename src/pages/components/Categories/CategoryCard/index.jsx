@@ -14,4 +14,4 @@ export default function CategoryCard({ img, title}) {
       </>
   
     )
-  } 
+  }
