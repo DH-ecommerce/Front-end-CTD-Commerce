@@ -9,11 +9,7 @@ export default function Banner() {
     <Container>
       <Carousel>
         <Carousel.Item>
-          <img
-            className='d-block w-100 '
-            src={firstBanner}
-            alt='First Banner'
-          />
+          <img className='d-block w-100' src={firstBanner} alt='First Banner' />
         </Carousel.Item>
         <Carousel.Item>
           <img
