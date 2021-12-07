@@ -1,11 +1,12 @@
 import productList from '../components/Grid/assets/API';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import {Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom'
 import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
+import api from '../../services/api'
 
 const productListReduce = productList.reduce((acc, {id, ...restProduct})=>({
   ...acc,
@@ -18,21 +19,26 @@ function SingleProduct() {
   const [product, setProduct] = useState({});
   const { singleProduct } = useParams();
 
-  useEffect(() => {
+useEffect(() => {
     async function loadProductData() {
       try {
-        const productResponse = productListReduce[singleProduct];
-        setProduct(productResponse);
+        const response = await api.get(`products/${singleProduct}`);
+        console.log(response.data)
+        setProduct({
+          id: response.data.id,
+          title: response.data.title,
+          price: response.data.price,
+          category: response.data.category.name,
+          image: response.data.image,
+          description: response.data.description
+        });
       } catch (error) {
-        Swal.fire({
-          title: error,
-          icon: 'error',
-          text: error
-        })
+          console.log(error)
       }
     }
     loadProductData();
   }, [singleProduct]);
+
 
 
   let productsLocalStorage = localStorage.getItem("products");
@@ -46,7 +52,7 @@ function SingleProduct() {
   
 
   const addProductToLocalStorage = () => {
-      productsLocalStorage.push(productListReduce[singleProduct]);
+      productsLocalStorage.push(product);
       localStorage.setItem("products", JSON.stringify(productsLocalStorage));
   }
 
@@ -95,7 +101,8 @@ const responsive = {
 </Carousel>;
       <h1>{product.title}</h1>
       <h1>{product.category}</h1>
-      <Button onClick={addProductToLocalStorage}><Link productItem={productListReduce[singleProduct]} to={`/shoppingCart`}>Adicionar ao Carrinho</Link></Button>
+      <h1>{product.description}</h1>
+      <Button onClick={addProductToLocalStorage}><Link productItem={product} to={`/shoppingCart`}>Adicionar ao Carrinho</Link></Button>
     </>
   );
 }
