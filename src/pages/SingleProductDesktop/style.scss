@@ -1,5 +1,16 @@
-.flex-itens {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.hover-style {
+  cursor: pointer;
+  transform: scale(0.9);
+  transition: transform 0.5s ease-in-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.image-zoom {
+  overflow: hidden;
+  &:hover {
+    transform: scale(1.5);
+  }
 }

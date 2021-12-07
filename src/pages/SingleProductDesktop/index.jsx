@@ -1,64 +1,71 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Container, Col, Row, Button, Image } from 'react-bootstrap';
 import './style.scss';
 
+import ImageMagnifier from '../components/ImageMagnifier';
 import api from '../../services/api';
 
 function SingleProduct() {
   const [product, setProduct] = useState([]);
+  const [productImage, setProductImage] = useState([]);
 
   const loadProduct = async () => {
     try {
-      const response = await api.get('/products/5');
+      const response = await api.get('/products/6');
       setProduct(response.data);
+      console.log(response.data.image);
+      setProductImage(response.data.image);
     } catch (error) {
       console.log(error);
     }
   };
 
-  loadProduct();
+  useEffect(() => {
+    return loadProduct();
+  }, []);
+  /*   loadProduct(); */
+
+  const handleClick = (element) => {
+    setProductImage(element.currentTarget.src);
+  };
+
+  const array = [
+    product.image,
+    'https://elgstore.vteximg.com.br/arquivos/ids/164667-290-290/MGDR_ELG_01.jpg?v=637453882918600000',
+    'https://opiniaobomvaleapena.com.br/imagens/mouse-gamer-fortrek-raptor-om-801-preto-e-verde.png',
+    product.image,
+  ];
 
   return (
     <Container className='my-5' as='section'>
       <Row className='p-0 m-0'>
         <Col md={2}>
-          <Row>
-            <Image
-              src={product.image}
-              alt=''
-              style={{ maxHeight: '20vh', objectFit: 'contain' }}
-            />
-          </Row>
-          <Row>
-            <Image
-              src={product.image}
-              alt=''
-              style={{ maxHeight: '20vh', objectFit: 'contain' }}
-              className='my-3'
-            />
-          </Row>
-          <Row>
-            <Image
-              src={product.image}
-              alt=''
-              style={{ maxHeight: '20vh', objectFit: 'contain' }}
-              className='my-3'
-            />
-          </Row>
-          <Row>
-            <Image
-              src={product.image}
-              alt=''
-              style={{ maxHeight: '20vh', objectFit: 'contain' }}
-            />
-          </Row>
+          {productImage.length !== 0 &&
+            array.map((image) => {
+              return (
+                <Row className='my-3'>
+                  <Image
+                    onClick={(e) => handleClick(e)}
+                    className='hover-style'
+                    src={image}
+                    alt=''
+                    style={{ maxHeight: '12vh', objectFit: 'contain' }}
+                  />
+                </Row>
+              );
+            })}
         </Col>
-        <Col md={6} className='mx-2 d-flex justify-content-center'>
-          <Image
-            src={product.image}
-            alt=''
-            style={{ objectFit: 'scale-down' }}
-          />
+        <Col md={6} className='mx-0 px-0 d-flex justify-content-center'>
+          {productImage.length !== 0 && (
+            <ImageMagnifier
+              src={productImage}
+              height={'50vh'}
+              style={{
+                objectFit: 'scale-down',
+                alignSelf: 'center',
+              }}
+            />
+          )}
         </Col>
         <Col className='d-grid'>
           <Container className='gap-5 p-0'>
