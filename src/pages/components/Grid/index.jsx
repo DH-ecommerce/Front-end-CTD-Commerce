@@ -43,7 +43,6 @@ export default function CardGrid() {
         <Row xs={1} md={2} className='g-4'>
           {products.map( product => {
             return (
-              
               <Col md={3} sm={4} xs={6}>
                 <CardProduct
                   product={product}
