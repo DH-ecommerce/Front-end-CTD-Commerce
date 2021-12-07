@@ -1,20 +1,27 @@
 import React, { useState } from 'react';
 import './style.scss';
-import { Container, Button, ToggleButton, Accordion, Row, Col, ButtonGroup, ToggleButtonGroup } from 'react-bootstrap';
+import { Container, ToggleButton, Accordion, Row, Col, ButtonGroup, ToggleButtonGroup } from 'react-bootstrap';
 
-const Filter = () => {
+const Filter = ({parentCallback}) => {
   const [checkedCategory, setCheckedCategory] = useState(false);
   const [radioValueCategory, setRadioValueCategory] = useState('');
 
-  const radiosCategory = [
-    { name: 'Headphone', value: '1' },
-    { name: 'Mouses', value: '2' },
-    { name: 'Monitores', value: '3' },
-    { name: 'Hardware', value: '4' }
-  ]
+  const [urlFilter, setUrlFilter] = useState('');
 
-  const [checkedSort, setCheckedSort] = useState(false);
-  const [radioValueSort, setRadioValueSort] = useState('');
+  const [ radiosCategory, setRadiosCategory ] = useState([
+    { name: 'All', value: 'all'},
+    { name: 'Headsets', value: 'Headsets'},
+    { name: 'Mouses', value: 'Mouses'},
+    { name: 'Monitores', value: 'Monitores'},
+    { name: 'Hardware', value: 'Hardwares'},
+    { name: 'Keyboards', value: 'Keyboards'},
+    { name: 'Laptops', value: 'Laptops'}
+  ])
+
+  const handleClickFilter = (e, radio) => {
+    setRadioValueCategory(e.currentTarget.value)
+    parentCallback('filter/' + e.currentTarget.value)
+  }
 
   const radiosSort = [
     { name: 'Newest', value: '5' },
@@ -49,18 +56,18 @@ const Filter = () => {
             <Accordion.Body className='d-flex flex-column gap-2'>
               <h5>Category</h5>
               <Container className='d-flex gap-4 flex-wrap p-0'>
-                <ToggleButtonGroup type="checkbox" name="categories" className='d-flex gap-3'>
+                <ToggleButtonGroup type="radio" name="categories" className='d-flex gap-3'>
                   {radiosCategory.map((radio, idx) => (
                     <ToggleButton
                       className='buttons-categories shadow-none'
                       key= {idx}
-                      id={`checkbox-${radio.value}`}
-                      type="checkbox"
+                      id={`radio-${radio.value}`}
+                      type="radio"
                       variant="outline-success"
                       name="categories"
                       value={radio.value}
                       checked={radioValueCategory === radio.value}
-                      onChange={(e) => setRadioValueCategory(e.currentTarget.value)}
+                      onChange={(e) => handleClickFilter(e, radio)}
                     >
                       {radio.name}
                     </ToggleButton>
@@ -68,32 +75,8 @@ const Filter = () => {
                   )}
                 </ToggleButtonGroup>
               </Container>
-              <h5>Sort by</h5>
-              <Container className='d-flex gap-4 flex-wrap p-0'>
-                <ToggleButtonGroup name="sort" className='d-flex gap-3'>
-                  {radiosSort.map((radio, idx) => (
-                    <ToggleButton
-                      className='buttons-categories shadow-none'
-                      key={idx}
-                      id={`radio-${radio.value}`}
-                      type="checkbox"
-                      variant="outline-success"
-                      name="sort"
-                      value={radio.value}
-                      checked={radioValueSort === radio.value}
-                      onChange={(e) => setRadioValueSort(e.currentTarget.value)}
-                    >
-                      {radio.name}
-                    </ToggleButton>
-                  )
-                  )}
-                </ToggleButtonGroup>
-              </Container>
-              <Container className='d-flex align-items-center justify-content-center my-4 mx-0 p-0'>
-                <Button size='lg' className='apply p-2'>
-                  Apply Filters
-                </Button>
-              </Container>
+              
+              
             </Accordion.Body>
           </Accordion>
         </Container>

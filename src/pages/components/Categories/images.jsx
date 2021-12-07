@@ -1,5 +1,5 @@
 import hardware from "../../../assets/categories/hardware.png";
-import headset from '../../../assets/categories/headset.png';
+import headsets from '../../../assets/categories/headset.png';
 import keyboard from "../../../assets/categories/keyboards.png";
 import laptop from '../../../assets/categories/laptops.png';
 import monitor from '../../../assets/categories/monitors.png';
@@ -14,7 +14,7 @@ const imagesList = [
     {
         id: 1,
         name: "headsets",
-        image: headset
+        image: headsets
       },
       {
         id: 2,
