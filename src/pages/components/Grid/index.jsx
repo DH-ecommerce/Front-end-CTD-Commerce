@@ -29,12 +29,10 @@ export default function CardGrid() {
         }
   })
 
-
   useEffect(() => {
     console.log(filterInfo.url)
     return gridProducts();
   }, [filterInfo.url]);
- 
   
   return (
     <>
