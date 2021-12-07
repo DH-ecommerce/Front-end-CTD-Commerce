@@ -68,7 +68,7 @@
           width: 100px;
         }
     
-          button{
+          .btns-quantity{
             background: #FFFFFF;
             width: 30px;
             height: 30px;
@@ -81,11 +81,17 @@
           }
           
         }
-        .bin-image{
-          position: absolute;
-          right: 3%;
-          top: 15%;
+        .bin-btn{
+          border: none;
+          background-color: #FFFFFF;
+          .bin-image{
+            position: absolute;
+            right: 3%;
+            top: 15%;
+
+          }
         }
+
     }
   }
 }

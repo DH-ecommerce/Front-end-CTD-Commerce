@@ -12,6 +12,7 @@ export default function CardGrid() {
             return (
               <Col md={3} sm={4} xs={6}>
                 <CardProduct
+                  id={id}
                   img={img}
                   title={title}
                   price={price}
