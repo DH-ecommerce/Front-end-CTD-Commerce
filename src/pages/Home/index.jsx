@@ -1,11 +1,13 @@
 import Banner from '../components/Banner';
-// import Product from '../components/Product';
+import CardCarousel from '../components/CardCarousel';
+import Categories from '../components/Categories';
 
 function Home() {
   return (
     <>
       <Banner />
-      {/* <Product /> */}
+      <CardCarousel />
+      <Categories />
     </>
   );
 }

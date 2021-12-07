@@ -19,6 +19,7 @@
     "react-slick": "^0.28.1",
     "react-stars": "^2.2.5",
     "sass": "^1.43.4",
+    "slick-carousel": "^1.8.1",
     "sweetalert2": "^11.1.10"
   },
   "scripts": {
