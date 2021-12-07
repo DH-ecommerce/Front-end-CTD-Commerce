@@ -37,6 +37,8 @@ export default function CardGrid() {
               
               <Col md={3} sm={4} xs={6}>
                 <CardProduct
+                  product={product}
+                  id={product.id}
                   key={product.id}
                   img={product.image}
                   title={product.title}

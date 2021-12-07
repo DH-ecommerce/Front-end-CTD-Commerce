@@ -8,8 +8,6 @@ import { Link } from 'react-router-dom';
 
 export default function CardProduct({ id, img, title, price, category }) {
 
-  console.log(img, title, price, category)
-
   return (
     <>
     <style type="text/css">

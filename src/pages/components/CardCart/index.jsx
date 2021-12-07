@@ -15,7 +15,7 @@ export default function CardCart({
   return (
     <Col sm={12}>
       <Card className='card_card'>
-        <Card.Img className='card_image' variant='top' src={product.img} />
+        <Card.Img className='card_image' variant='top' src={product.image} />
         <Card.Body className='card_body'>
           <Card.Title className='card_title'>{product.title}</Card.Title>
           <Card.Text className='card_text'>USD {product.price}</Card.Text>
