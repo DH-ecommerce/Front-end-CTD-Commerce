@@ -11,9 +11,9 @@ const productList = [
     {
         id: 2,
         img: imgfone,
-        title: 'TMA-2 HD Wireless',
+        title: 'Teste hardware',
         price: 350,
-        category:'Headphone'
+        category:'Hardware'
     },
     {
         id: 3,
@@ -32,9 +32,9 @@ const productList = [
     {
         id: 5,
         img: imgfone,
-        title: 'TMA-2 HD Wireless',
+        title: 'Teste mouse',
         price: 350,
-        category:'Headphone'
+        category:'Mouse'
     },
     {
         id: 6,

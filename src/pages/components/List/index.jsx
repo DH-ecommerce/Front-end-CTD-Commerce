@@ -1,9 +1,11 @@
+import "./style.scss"
 import React from 'react';
-// import { Row,Stack } from 'react-bootstrap';
+
+// import { Container } from 'react-bootstrap';
 
 export default function List(props) {
   return (
-    <div className="list">
+    <div className="list-div">
       {props.children}
     </div>
   )
