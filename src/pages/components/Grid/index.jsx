@@ -8,7 +8,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 export default function CardGrid() {
 
   const [ products, setProducts ] = useState([]);
-  const allProducts = '/products/all'
+  const allProducts = '/products/filter/all'
   
   const gridProducts = useCallback(async () => {
         
