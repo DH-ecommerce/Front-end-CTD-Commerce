@@ -3,6 +3,7 @@ import Filter from '../components/Filter';
 
 
 function Products() {
+  
   return (
     <>
       <Filter />
