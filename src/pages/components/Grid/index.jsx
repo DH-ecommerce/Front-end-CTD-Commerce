@@ -1,14 +1,13 @@
 import './index.scss';
-import { Container, Col, Row } from 'react-bootstrap';
+import { Container, Col, Row, Card} from 'react-bootstrap';
 import CardProduct from './CardProduct';
-import productList from '../Grid/assets/API';
 import api from '../../../services/api'
 import React, { useState, useEffect, useCallback } from 'react'
 
 export default function CardGrid() {
 
   const [ products, setProducts ] = useState([]);
-  const allProducts = '/products/all'
+  const allProducts = '/products/filter/all'
   
   const gridProducts = useCallback(async () => {
         
@@ -34,7 +33,6 @@ export default function CardGrid() {
         <Row xs={1} md={2} className='g-4'>
           {products.map( product => {
             return (
-              
               <Col md={3} sm={4} xs={6}>
                 <CardProduct
                   key={product.id}
