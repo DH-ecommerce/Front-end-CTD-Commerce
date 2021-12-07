@@ -11,7 +11,7 @@ function SingleProduct() {
 
   const loadProduct = async () => {
     try {
-      const response = await api.get('/products/6');
+      const response = await api.get('/products/8');
       setProduct(response.data);
       console.log(response.data.image);
       setProductImage(response.data.image);
@@ -60,6 +60,7 @@ function SingleProduct() {
             <ImageMagnifier
               src={productImage}
               height={'50vh'}
+              className='zoom'
               style={{
                 objectFit: 'scale-down',
                 alignSelf: 'center',
@@ -69,18 +70,23 @@ function SingleProduct() {
         </Col>
         <Col className='d-grid'>
           <Container className='gap-5 p-0'>
-            <Row>
-              <Col>
-                <p style={{ fontWeight: 'bold' }}>{product.title}</p>
-              </Col>
-            </Row>
+            {product.length !== 0 && (
+              <>
+                <Row>
+                  <Col>
+                    <p style={{ fontWeight: 'bold' }}>{product.title}</p>
+                  </Col>
+                </Row>
 
-            <Row>
-              <Col>
-                <p>{product.description}</p>
-              </Col>
-            </Row>
+                <Row>
+                  <Col>
+                    <p>{product.description}</p>
+                  </Col>
+                </Row>
+              </>
+            )}
           </Container>
+
           <Row>
             <Col className='align-self-end'>
               <Button variant='primary' className='px-5 w-100'>
