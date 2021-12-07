@@ -1,7 +1,7 @@
 import './index.scss';
 import { Container, Col, Row } from 'react-bootstrap';
 import CardProduct from './CardProduct';
-import productList from '../Grid/assets/API';
+import productList from './assets/API';
 
 export default function CardGrid() {
   return (
