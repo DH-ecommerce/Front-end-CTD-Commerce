@@ -9,7 +9,6 @@ import "./style.scss";
 export default function CardCarousel() {
   const responsive = {
     superLargeDesktop: {
-      // the naming can be any, depends on you.
       breakpoint: { max: 4000, min: 3000 },
       items: 5.5
     },
@@ -26,7 +25,6 @@ export default function CardCarousel() {
       items: 2
     }
   };
-
   return (
     <>
       <Container>
@@ -38,7 +36,7 @@ export default function CardCarousel() {
           {productList.map(({ id, img, title, price, category }) => {
             return (
               <div className="mx-2">
-                <OneCard img={img} title={title} price={price} category={category} />
+                <OneCard key ={id} img={img} title={title} price={price} category={category} />
               </div>
             )
           })

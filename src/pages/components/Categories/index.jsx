@@ -1,19 +1,12 @@
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Container, Image } from 'react-bootstrap';
-import hardware from '../../../assets/categories/hardware.png';
-import headset from '../../../assets/categories/headset.png';
-import keyboard from '../../../assets/categories/keyboards.png';
-import laptop from '../../../assets/categories/laptops.png';
-import monitors from '../../../assets/categories/monitors.png';
-import mouse from '../../../assets/categories/mouses.png';
-
-
+import { Link } from 'react-router-dom';
+import imagesList from './images';
 
 export default function CategoriesCarousel() {
   const responsive = {
     superLargeDesktop: {
-      // the naming can be any, depends on you.
       breakpoint: { max: 4000, min: 3000 },
       items: 6
     },
@@ -33,29 +26,21 @@ export default function CategoriesCarousel() {
 
   return (
     <>
-      <Container>
+      <Container className="mb-5">
         <div className="clearfix my-4">
           <h4 className='float-start ms-2'>Categories</h4>
         </div>
         <Carousel responsive={responsive} className='ms-2'>
-          <div className="me-2">
-          <Image src={hardware} rounded fluid/>
-          </div>
-          <div className="me-2">
-          <Image src={headset} rounded fluid/>
-          </div>
-          <div className="me-2">
-          <Image src={keyboard} rounded fluid/>
-          </div>
-          <div className="me-2">
-          <Image src={laptop} rounded fluid/>
-          </div>
-          <div className="me-2">
-          <Image src={monitors} rounded fluid/>
-          </div>
-          <div className="me-2">
-          <Image src={mouse} rounded fluid/>
-          </div>
+          {imagesList.map(({ id, name, image }) => {
+            return (
+              <div className="me-2">
+                <Link to={`/products/filter/${name}`}>
+                  <Image key={id} src={image} rounded fluid link />
+                </Link>
+              </div>
+            )
+          })
+          }
         </Carousel>
       </Container>
     </>

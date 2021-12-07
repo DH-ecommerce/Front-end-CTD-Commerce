@@ -8,6 +8,7 @@ function Home() {
       <Banner />
       <CardCarousel />
       <Categories />
+      <CardCarousel />
     </>
   );
 }
