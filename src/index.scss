@@ -1,14 +1,15 @@
 @import '~bootstrap/scss/bootstrap';
 @import './utilities.scss';
 
-* {
+*{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-<<<<<<< HEAD
   scroll-behavior: smooth;
-=======
->>>>>>> 47c4344166911c0e05fbd108ce50446c7e2dd3d6
+}
+
+body{
+    background-color: #F6F6F6;
 }
 
 textarea:hover,

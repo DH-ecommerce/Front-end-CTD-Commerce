@@ -1,0 +1,9 @@
+@import "../../../utilities.scss";
+
+.see-all{
+    color: $primary-color;
+    text-decoration: none;
+     &:hover{
+        color: #0cb876;
+    }
+}
