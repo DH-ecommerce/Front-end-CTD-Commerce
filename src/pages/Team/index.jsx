@@ -2,7 +2,6 @@ import './style.scss'
 import React from 'react'
 import { Card, Container, Col, Row } from 'react-bootstrap';
 import { AiFillGithub, AiFillLinkedin } from "react-icons/ai";
-import { Link } from 'react-router-dom';
 
 
 import gusta from '../../assets/imgs/gusta_img_2.jpg';
