@@ -24,7 +24,7 @@ export default function CardCart({
               <button className="btns-quantity" onClick={onRemoveItemCart.bind(null, product.id)}>
                 <img src={remove} alt='' />
               </button>
-              <p className='quantity-p'>{items[product.id]?.quantity || 0}</p>
+              <p className='quantity-p'>{items[product.id]?.quantity || 1}</p>
               <button className="btns-quantity" onClick={onAddItemCart.bind(null, product)}>
                 <img src={add} alt='' />
               </button>

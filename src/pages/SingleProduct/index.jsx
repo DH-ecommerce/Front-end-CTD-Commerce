@@ -25,9 +25,8 @@ useEffect(() => {
     async function loadProductData() {
       try {
         const response = await api.get(`products/${singleProduct}`);
-        console.log(response.data)
         
-        await setProduct({
+        setProduct({
           id: response.data.id,
           title: response.data.title,
           price: response.data.price,
@@ -75,6 +74,7 @@ const responsive = {
 
   };
   
+
 const arrImage = product.image ? product.image.split("|") : []
 
   return (

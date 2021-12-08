@@ -61,9 +61,13 @@ export default function ShoppingCart() {
   const [cartItemsList, setCartItemsList] = useState(productListReduce);
   const [cartItemsListEffect, setCartItemsListEffect] = useState();
 
-  function deleteItem (product) {
+async function promiseRemove (product) {
+   return product?.quantity > 0 && removeItemCart(product.id)
+}
+  async function deleteItem (product) {
+    await promiseRemove(product)
     delete cartItemsList[product.id]
-    localStorage.setItem("products", JSON.stringify(productsLocalStorage.filter(p=>p.id !== product.id)))
+    // localStorage.setItem("products", JSON.stringify(productsLocalStorage.filter(p=>p.id !== product.id)))
     setCartItemsList({ ...cartItemsList })
   }
 
