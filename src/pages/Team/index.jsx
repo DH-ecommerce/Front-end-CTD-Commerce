@@ -67,7 +67,7 @@ function Team() {
         <Container className='col-md-6 col-sm-6 d-flex aligm-itens-center justify-content-center flex-wrap gap-3'>
           <Row xs={2} sm={2} md={2}>
             {teammates.map((member, idx) => (
-              <Container className='g-3'>
+              <Container className='g-3' key={idx}>
                 <Card className='g-3'>
                   <Card.Img src={member.image} style={{ maxHeight: '65vh' }} />
                   <Card.Title>{member.name}</Card.Title>

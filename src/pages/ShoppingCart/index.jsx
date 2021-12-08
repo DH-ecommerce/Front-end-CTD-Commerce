@@ -96,7 +96,7 @@ export default function ShoppingCart() {
   return (
     <>
       <Helmet>
-        <title>NeoTech | Shopping Cart</title>
+        <title>NeoTech |Shopping Cart</title>
       </Helmet>
       <div className='shop-cart-container'>
         <List>{cartItemsListEffect}</List>
