@@ -4,10 +4,10 @@ import CardProduct from './CardProduct';
 import Filter from '../Filter';
 
 import { Container, Col, Row } from 'react-bootstrap';
-import React, { useState, useEffect, useCallback } from 'react'
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect, useCallback } from 'react';
 
 export default function CardGrid() {
+  const [products, setProducts] = useState([]);
 
   const [ products, setProducts ] = useState([]);
   const [ filterInfo, setFilterInfo ] = useState({ url: '/products/filter/all'})
@@ -27,8 +27,8 @@ export default function CardGrid() {
         setProducts(response.data);
         console.log(response.data);
 
-    } catch (e) {
-      console.log(e)
+    } catch (error) {
+      console.log(error)
     }
   })
 
@@ -44,9 +44,9 @@ export default function CardGrid() {
       <Filter  parentCallback={callbackFilterInfo}/>
       <Container className='justify-content-center align-items-center pt-5 pb-5 '>
         <Row xs={1} md={2} className='g-4'>
-          {products.map( product => {
+          {products.map((product, idx) => {
             return (
-              <Col md={3} sm={4} xs={6}>
+              <Col md={3} sm={4} xs={6} key={idx}>
                 <CardProduct
                   product={product}
                   id={product.id}

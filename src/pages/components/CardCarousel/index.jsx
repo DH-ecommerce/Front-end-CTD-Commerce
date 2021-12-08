@@ -39,25 +39,25 @@ export default function CardCarousel() {
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
-      items: 5.5
+      items: 5.5,
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 4.5
+      items: 4.5,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 3.5
+      items: 3.5,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 2
-    }
+      items: 2,
+    },
   };
   return (
     <>
       <Container>
-        <div className="clearfix my-4">
+        <div className='clearfix my-4'>
           <h4 className='float-start ms-2'>Featured products</h4>
           <Link className='see-all float-end me-2' to="/products/filter/all">see all</Link>
         </div>
@@ -72,9 +72,8 @@ export default function CardCarousel() {
                   price={products[productIdSorted]?.price}
                   category={products[productIdSorted]?.category.name} />
               </div>
-            )
-          })
-          }
+            );
+          })}
         </Carousel>
       </Container>
     </>
