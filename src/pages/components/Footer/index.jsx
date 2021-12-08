@@ -13,16 +13,16 @@ export default function Footer({ company }) {
       : `${creationYear} - ${currentYear}`;
   };
   return (
-    <Container className='my-5 text-center' as='footer'>
+    <Container className='my-5 text-center'  as='footer'>
       <Col md={{ span: 6, offset: 3 }} sm={{ span: 10, offset: 1 }}>
-        <ListGroup as='ul' horizontal className='justify-content-center'>
+        <ListGroup as='ul' horizontal className='justify-content-center' >
           <ListGroup.Item as='li' className='nav-item'>
             <Link to='/' className='nav-link px-2 text-muted'>
               Home
             </Link>
           </ListGroup.Item>
           <ListGroup.Item as='li' className='nav-item'>
-            <Link to='/products' className='nav-link px-2 text-muted'>
+            <Link to='/products/filter/all' className='nav-link px-2 text-muted'>
               Products
             </Link>
           </ListGroup.Item>

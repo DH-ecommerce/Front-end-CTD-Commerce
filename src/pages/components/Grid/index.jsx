@@ -2,45 +2,50 @@ import './index.scss';
 import api from '../../../services/api';
 import CardProduct from './CardProduct';
 import Filter from '../Filter';
-
+import { useParams } from 'react-router-dom';
 import { Container, Col, Row } from 'react-bootstrap';
 import React, { useState, useEffect, useCallback } from 'react';
 
 export default function CardGrid() {
   const [products, setProducts] = useState([]);
 
-  /*   const allProducts = '/products/filter/all'; */
-
-  const [filterInfo, setFilterInfo] = useState({ url: '/products/filter/all' });
+  const [ filterInfo, setFilterInfo ] = useState({ url: '/products/filter/all'})
+  const { filtered } = useParams();
+  
 
   const callbackFilterInfo = (filterInfo) => {
-    setFilterInfo({ url: '/products/product/' + filterInfo });
-    return filterInfo.url;
-  };
-
+    setFilterInfo({url: '/products/filter/' + filterInfo})
+    
+  }
+  
   const gridProducts = useCallback(async () => {
+    console.log("parametro da da url", filtered)
     try {
-      const response = await api.get(filterInfo.url);
-      setProducts(response.data);
-      console.log(response.data);
-    } catch (e) {
-      console.log(e);
+
+        const response = await api.get('/products/filter/' + filtered)
+        setProducts(response.data);
+        console.log(response.data);
+
+    } catch (error) {
+      console.log(error)
     }
-  });
+  })
 
   useEffect(() => {
-    console.log(filterInfo.url);
+    console.log('filter info:', filterInfo.url)
+        
     return gridProducts();
-  }, [filterInfo.url]);
-
+  }, [filtered]);
+  
   return (
     <>
-      <Filter parentCallback={callbackFilterInfo} />
-      <Container className='justify-content-center align-items-center pt-5 pb-5 '>
+    
+      <Filter  parentCallback={callbackFilterInfo}/>
+      <Container className='justify-content-center align-items-center pt-5 pb-5'>
         <Row xs={1} md={2} className='g-4'>
-          {products.map((product) => {
+          {products.map((product, idx) => {
             return (
-              <Col md={3} sm={4} xs={6}>
+              <Col md={3} sm={4} xs={6} key={idx}>
                 <CardProduct
                   product={product}
                   id={product.id}

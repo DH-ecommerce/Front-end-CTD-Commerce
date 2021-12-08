@@ -8,32 +8,32 @@ import mouse from '../../../assets/categories/mouses.png';
 const imagesList = [
     {
       id: 0,
-      name: "hardwares",
+      name: "Hardwares",
       image: hardware
     },
     {
         id: 1,
-        name: "headsets",
+        name: "Headsets",
         image: headsets
       },
       {
         id: 2,
-        name: "keyboards",
+        name: "Keyboards",
         image: keyboard
       },
       {
         id: 3,
-        name: "laptops",
+        name: "Laptops",
         image: laptop
       },
       {
         id: 4,
-        name: "monitors",
+        name: "Monitores",
         image: monitor
       },
       {
         id: 5,
-        name: "mouses",
+        name: "Mouses",
         image: mouse
       }
   ]
