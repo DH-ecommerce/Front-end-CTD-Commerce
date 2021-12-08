@@ -2,6 +2,7 @@ import React from 'react';
 import CardCart from '../components/CardCart';
 import List from '../components/List';
 import Cart from '../components/Cart';
+import { Helmet } from 'react-helmet';
 import './style.scss';
 import { useState, useEffect } from 'react';
 
@@ -93,10 +94,15 @@ export default function ShoppingCart() {
     renderCartList();
   }, [cartItemsList]);
   return (
-    <div className='shop-cart-container'>
-      <List>{cartItemsListEffect}</List>
-      
-      <Cart items={cartItemsList}/>
-    </div>
+
+    <>
+      <Helmet>
+        <title>NeoTech |Shopping Cart</title>
+      </Helmet>
+      <div className='shop-cart-container'>
+        <List>{cartItemsListEffect}</List>
+        <Cart items={cartItems} />
+      </div>
+    </>
   );
 }

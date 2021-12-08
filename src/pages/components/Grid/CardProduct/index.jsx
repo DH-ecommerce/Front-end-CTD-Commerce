@@ -51,7 +51,6 @@ export default function CardProduct({ id, img, title, price, category }) {
                 <BsFillStarFill className='mb-1' style={{ color: 'gold' }} />
                 <small className='text-muted'> 4.7</small>
               </div>
-
               <div>
                 <small className='text-muted'>
                   38 Reviews

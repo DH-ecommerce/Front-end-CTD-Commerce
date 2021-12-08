@@ -2,9 +2,19 @@
 //     max-width: 30rem;
 // }
 
-.accordion-button:not(.collapsed) { 
-    background-color: #FFFFFF;
+.accordion-button{
+    background-color: transparent;
 }
+
+.accordion-button:not(.collapsed) { 
+    background-color: transparent;
+}
+
+.accordion-button {
+    background-color: transparent;
+}
+
+
 
 .buttons-categories {
     border-radius: 10px !important;
@@ -29,7 +39,7 @@
 .buttons-categories:focus {
     outline: none !important;
     box-shadow: none !important;
-    border-shadow: none !important;
+    // border-shadow: none !important;
     
 }
 
@@ -56,12 +66,21 @@
     background-color: #12885b !important;
 }
 
+
 .filter-button:not(.collapsed) {
     border: 1px solid;
     border-radius: 10px;
     color: black;
-    border-color: black;   
+    border-color: black;
+    
 }
+
+.accordion-button .collapsed {
+    .filter-button {
+        background-color: red !important;
+    }
+}
+
 
 .accordion-button::after {
     background-image: none !important;
