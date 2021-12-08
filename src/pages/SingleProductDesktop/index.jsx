@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import { Container, Col, Row, Button, Image } from 'react-bootstrap';
 import './style.scss';
 
@@ -6,28 +7,67 @@ import ImageMagnifier from '../components/ImageMagnifier';
 import api from '../../services/api';
 
 function SingleProductDesktop() {
-  const [product, setProduct] = useState([]);
-  const [productImage, setProductImage] = useState([]);
+  const [product, setProduct] = useState({});
   const [currentImage, setCurrentImage] = useState([]);
 
+  const { singleProduct } = useParams();
+  /* 
   const loadProduct = async () => {
     try {
-      const response = await api.get('/products/8');
-      setProduct(response.data);
-      setProductImage(response.data.image.split('|'));
-      setCurrentImage(response.data.image.split('|')[0]);
+      const response = await api.get(`/products/product/${SingleProduct}`);
+      await setProduct({
+        id: response.data.id,
+        title: response.data.title,
+        price: response.data.price,
+        category: response.data.category.name,
+        image: response.data.image.split('|'),
+        description: response.data.description,
+      });
+      await setCurrentImage(response.data.image.split('|')[0]);
     } catch (error) {
       console.log(error);
     }
   };
-
+ */
   useEffect(() => {
-    return loadProduct();
-  }, []);
+    async function loadProductData() {
+      try {
+        const response = await api.get(`/products/product/${singleProduct}`);
+        setProduct({
+          id: response.data.id,
+          title: response.data.title,
+          price: response.data.price,
+          category: response.data.category.name,
+          image: response.data.image,
+          description: response.data.description,
+        });
+        setCurrentImage(response.data.image.split('|')[0]);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    loadProductData();
+  }, [singleProduct]);
 
   const handleClick = (e) => {
     setCurrentImage(e.currentTarget.src);
   };
+
+  let productsLocalStorage = localStorage.getItem('products');
+
+  if (productsLocalStorage == null) {
+    productsLocalStorage = [];
+    localStorage.setItem('products', JSON.stringify(productsLocalStorage));
+  } else {
+    productsLocalStorage = JSON.parse(localStorage.getItem('products'));
+  }
+
+  const addProductToLocalStorage = () => {
+    productsLocalStorage.push(product);
+    localStorage.setItem('products', JSON.stringify(productsLocalStorage));
+  };
+
+  const arrImage = product.image ? product.image.split('|') : [];
 
   return (
     <Container>
@@ -44,8 +84,8 @@ function SingleProductDesktop() {
       <Container className='my-5 mx-0 p-0' as='section'>
         <Row className='p-0 mx-0'>
           <Col md={2}>
-            {productImage.length !== 0 &&
-              productImage.map((image, arr, idx) => {
+            {arrImage.length !== 0 &&
+              arrImage.map((image, arr, idx) => {
                 return (
                   <Row className='my-3'>
                     <Image
@@ -61,7 +101,7 @@ function SingleProductDesktop() {
               })}
           </Col>
           <Col md={6} className='mx-0 px-0 d-flex justify-content-center'>
-            {productImage.length !== 0 && (
+            {currentImage.length !== 0 && (
               <ImageMagnifier
                 src={currentImage}
                 height={'50vh'}
@@ -94,9 +134,15 @@ function SingleProductDesktop() {
 
             <Row>
               <Col className='align-self-end'>
-                <Button variant='primary' className='px-5 w-100'>
-                  Buy
-                </Button>
+                <Link to={`/shoppingCart`} style={{ textDecoration: 'none' }}>
+                  <Button
+                    variant='primary'
+                    className='px-5 w-100'
+                    onClick={addProductToLocalStorage}
+                  >
+                    Add to Cart
+                  </Button>
+                </Link>
               </Col>
             </Row>
           </Col>

@@ -4,46 +4,41 @@ import CardProduct from './CardProduct';
 import Filter from '../Filter';
 
 import { Container, Col, Row } from 'react-bootstrap';
-import React, { useState, useEffect, useCallback } from 'react'
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect, useCallback } from 'react';
 
 export default function CardGrid() {
+  const [products, setProducts] = useState([]);
 
-  const [ products, setProducts ] = useState([]);
+  /*   const allProducts = '/products/filter/all'; */
 
-  const allProducts = '/products/filter/all'
-
-  const [ filterInfo, setFilterInfo ] = useState({ url: '/products/filter/all'})
+  const [filterInfo, setFilterInfo] = useState({ url: '/products/filter/all' });
 
   const callbackFilterInfo = (filterInfo) => {
-    setFilterInfo({url: '/products/' + filterInfo})
-    return filterInfo.url; 
-  }
+    setFilterInfo({ url: '/products/product/' + filterInfo });
+    return filterInfo.url;
+  };
 
-  
   const gridProducts = useCallback(async () => {
-        
-        try {
-          const response = await api.get(filterInfo.url);
-          setProducts(response.data);
-          console.log(response.data);
-
-        } catch (e) {
-          console.log(e);
-        }
-  })
+    try {
+      const response = await api.get(filterInfo.url);
+      setProducts(response.data);
+      console.log(response.data);
+    } catch (e) {
+      console.log(e);
+    }
+  });
 
   useEffect(() => {
-    console.log(filterInfo.url)
+    console.log(filterInfo.url);
     return gridProducts();
   }, [filterInfo.url]);
-  
+
   return (
     <>
       <Filter parentCallback={callbackFilterInfo} />
       <Container className='justify-content-center align-items-center pt-5 pb-5 '>
         <Row xs={1} md={2} className='g-4'>
-          {products.map( product => {
+          {products.map((product) => {
             return (
               <Col md={3} sm={4} xs={6}>
                 <CardProduct
