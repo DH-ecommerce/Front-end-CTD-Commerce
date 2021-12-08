@@ -1,5 +1,5 @@
 import hardware from "../../../assets/categories/hardware.png";
-import headset from '../../../assets/categories/headset.png';
+import headsets from '../../../assets/categories/headset.png';
 import keyboard from "../../../assets/categories/keyboards.png";
 import laptop from '../../../assets/categories/laptops.png';
 import monitor from '../../../assets/categories/monitors.png';
@@ -8,32 +8,32 @@ import mouse from '../../../assets/categories/mouses.png';
 const imagesList = [
     {
       id: 0,
-      name: "hardwares",
+      name: "Hardwares",
       image: hardware
     },
     {
         id: 1,
-        name: "headsets",
-        image: headset
+        name: "Headsets",
+        image: headsets
       },
       {
         id: 2,
-        name: "keyboards",
+        name: "Keyboards",
         image: keyboard
       },
       {
         id: 3,
-        name: "laptops",
+        name: "Laptops",
         image: laptop
       },
       {
         id: 4,
-        name: "monitors",
+        name: "Monitores",
         image: monitor
       },
       {
         id: 5,
-        name: "mouses",
+        name: "Mouses",
         image: mouse
       }
   ]

@@ -1,12 +1,12 @@
+import { Helmet } from 'react-helmet';
 import Grid from '../components/Grid/index';
-import Filter from '../components/Filter';
-
 
 function Products() {
-  
   return (
     <>
-      <Filter />
+      <Helmet>
+        <title>NeoTech | Product</title>
+      </Helmet>
       <Grid />
     </>
   );

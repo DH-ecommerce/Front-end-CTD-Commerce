@@ -1,41 +1,51 @@
 import './index.scss';
-import { Container, Col, Row } from 'react-bootstrap';
+import api from '../../../services/api';
 import CardProduct from './CardProduct';
-import productList from '../Grid/assets/API';
-import api from '../../../services/api'
-import React, { useState, useEffect, useCallback } from 'react'
+import Filter from '../Filter';
+import { useParams } from 'react-router-dom';
+import { Container, Col, Row } from 'react-bootstrap';
+import React, { useState, useEffect, useCallback } from 'react';
 
 export default function CardGrid() {
+  const [products, setProducts] = useState([]);
 
-  const [ products, setProducts ] = useState([]);
-  const allProducts = '/products/all'
+  const [ filterInfo, setFilterInfo ] = useState({ url: '/products/filter/all'})
+  const { filtered } = useParams();
+  
+
+  const callbackFilterInfo = (filterInfo) => {
+    setFilterInfo({url: '/products/filter/' + filterInfo})
+    
+  }
   
   const gridProducts = useCallback(async () => {
-        
-        try {
-          const response = await api.get(allProducts);
-          setProducts(response.data);
-          console.log(response.data);
+    console.log("parametro da da url", filtered)
+    try {
 
-        } catch (e) {
-          console.log(e);
-        }
+        const response = await api.get('/products/filter/' + filtered)
+        setProducts(response.data);
+        console.log(response.data);
+
+    } catch (error) {
+      console.log(error)
+    }
   })
 
-
   useEffect(() => {
+    console.log('filter info:', filterInfo.url)
+        
     return gridProducts();
-  }, []);
- 
+  }, [filtered]);
   
   return (
     <>
-      <Container className='justify-content-center align-items-center pt-5 pb-5 '>
+    
+      <Filter  parentCallback={callbackFilterInfo}/>
+      <Container className='justify-content-center align-items-center pt-5 pb-5'>
         <Row xs={1} md={2} className='g-4'>
-          {products.map( product => {
+          {products.map((product, idx) => {
             return (
-              
-              <Col md={3} sm={4} xs={6}>
+              <Col md={3} sm={4} xs={6} key={idx}>
                 <CardProduct
                   product={product}
                   id={product.id}
