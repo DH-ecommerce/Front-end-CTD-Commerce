@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Button, Container, Image, Tabs, Tab, Row } from 'react-bootstrap';
+import { Button, Container, Image, Tabs, Tab } from 'react-bootstrap';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import Carousel from 'react-multi-carousel';
