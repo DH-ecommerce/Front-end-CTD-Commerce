@@ -15,7 +15,7 @@ const RouteList = () => (
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/products/filter/:filtered' element={<Products />} />
-      <Route path='/products/:singleProduct' element={<SingleProduct />} />
+      <Route path='/products/product/:singleProduct' element={<SingleProduct />} />
       <Route path='/shoppingCart' element={<ShoppingCart />} />
       <Route path='/team' element={<Team />} />
       <Route path='*' element={<NotFound />} />
