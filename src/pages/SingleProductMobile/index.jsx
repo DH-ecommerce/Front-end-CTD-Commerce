@@ -25,6 +25,7 @@ function SingleProduct() {
           category: response.data.category.name,
           image: response.data.image,
           description: response.data.description,
+          quantity: 1
         });
       } catch (error) {
         console.log(error);
@@ -75,7 +76,7 @@ function SingleProduct() {
             <Tab eventKey='overview' title='Overview'>
               <Container className='container-single-product-carousel'>
                 <Carousel responsive={responsive}>
-                  {arrImage.map((img, i) => {
+                  {arrImage.length !== 0 && arrImage.map((img, i) => {
                     return (
                       <div
                         key={i}

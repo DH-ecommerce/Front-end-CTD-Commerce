@@ -12,6 +12,14 @@ export default function CardCart({
   onRemoveItemCart,
   onDeleteItem,
 }) {
+
+  const teste = { ...items,
+          [product.id]: {
+            ...product,
+            quantity: 1,
+          }
+  }
+
   return (
     <Col sm={12}>
       <Card className='card_card'>
@@ -24,7 +32,7 @@ export default function CardCart({
               <button className="btns-quantity" onClick={onRemoveItemCart.bind(null, product.id)}>
                 <img src={remove} alt='' />
               </button>
-              <p className='quantity-p'>{items[product.id]?.quantity || 0}</p>
+              <p className='quantity-p'>{items[product.id]?.quantity || teste[product.id].quantity}</p>
               <button className="btns-quantity" onClick={onAddItemCart.bind(null, product)}>
                 <img src={add} alt='' />
               </button>

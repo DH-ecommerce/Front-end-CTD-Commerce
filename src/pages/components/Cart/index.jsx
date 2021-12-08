@@ -3,19 +3,22 @@ import { Row, Col, Button } from 'react-bootstrap';
 
 
 const totalPrice = (cartItems) =>
-  Object.keys(cartItems).reduce(
+    Object.keys(cartItems).reduce(
     (acc, productId) =>
-      acc + cartItems[productId].price * cartItems[productId].quantity,
+      acc += cartItems[productId].price * cartItems[productId].quantity,
     0
-  );
+    )
 
 const totalQuantity = (cartItems) =>
-  Object.keys(cartItems).reduce(
-    (acc, productId) => acc + cartItems[productId].quantity,
-    0
-  );
 
-export default function Cart({ items }) {
+    Object.keys(cartItems).reduce(
+      (acc, productId) => acc += cartItems[productId].quantity,
+      0
+    )
+
+
+
+export default function Cart({ items}) {
 
   <style>
 
@@ -54,7 +57,7 @@ export default function Cart({ items }) {
           text-align: left;
           display: flex;
           justify-content: space-around;
-          margin: 1rem 0 3rem 0;
+          margin: 1rem 0 3rem;
         
         }
 

@@ -7,48 +7,6 @@ import './style.scss';
 import { useState, useEffect } from 'react';
 
 export default function ShoppingCart() {
-  const [cartItems, setCartItems] = useState({});
-
-  const setItemCart = (product) => {
-    !cartItems[product.id]
-      ? setCartItems({
-          ...cartItems,
-          [product.id]: {
-            ...product,
-            quantity: 1,
-          },
-        })
-      : setCartItems({
-          ...cartItems,
-          [product.id]: {
-            ...product,
-            quantity: ++cartItems[product.id].quantity,
-          },
-        });
-  };
-
-  const haveItemInCart = (product) => product?.quantity !== undefined;
-
-  const itemInCartIsLOEOne = (product) => product?.quantity <= 1;
-
-  function deleteItemAndUpdateCart(product) {
-    delete cartItems[product.id];
-    setCartItems({ ...cartItems });
-  }
-
-  function removeItemCart(productId) {
-    if (haveItemInCart(cartItems[productId])) {
-      itemInCartIsLOEOne(cartItems[productId])
-        ? deleteItemAndUpdateCart(cartItems[productId])
-        : setCartItems({
-            ...cartItems,
-            [productId]: {
-              ...cartItems[productId],
-              quantity: --cartItems[productId].quantity,
-            },
-          });
-    }
-  }
 
   const productsLocalStorage = JSON.parse(localStorage.getItem('products'));
 
@@ -64,7 +22,50 @@ export default function ShoppingCart() {
       : [];
 
   const [cartItemsList, setCartItemsList] = useState(productListReduce);
+
+  const setItemCart = (product) => {
+    !cartItemsList[product.id]
+      ? setCartItemsList({
+          ...cartItemsList,
+          [product.id]: {
+            ...product,
+            quantity: 1,
+          },
+        })
+      : setCartItemsList({
+          ...cartItemsList,
+          [product.id]: {
+            ...product,
+            quantity: ++cartItemsList[product.id].quantity,
+          },
+        });
+  };
+
+  const haveItemInCart = (product) => product?.quantity !== undefined;
+
+  const itemInCartIsLOEOne = (product) => product?.quantity <= 1;
+
+  function deleteItemAndUpdateCart(product) {
+    delete cartItemsList[product.id];
+    setCartItemsList({ ...cartItemsList });
+  }
+
+  function removeItemCart(productId) {
+    if (haveItemInCart(cartItemsList[productId])) {
+      itemInCartIsLOEOne(cartItemsList[productId])
+        ? deleteItemAndUpdateCart(cartItemsList[productId])
+        : setCartItemsList({
+            ...cartItemsList,
+            [productId]: {
+              ...cartItemsList[productId],
+              quantity: --cartItemsList[productId].quantity,
+            },
+          });
+    }
+  }
+
   const [cartItemsListEffect, setCartItemsListEffect] = useState();
+
 
   function deleteItem(product) {
     delete cartItemsList[product.id];
@@ -84,23 +85,23 @@ export default function ShoppingCart() {
             onAddItemCart={setItemCart}
             onRemoveItemCart={removeItemCart}
             key={`product-${index}`}
-            items={cartItems}
+            items={cartItemsList}
             onDeleteItem={deleteItem}
           />
         ))
       );
     }
     renderCartList();
-  }, [cartItemsList, cartItems]);
-
+  }, [cartItemsList]);
   return (
+
     <>
       <Helmet>
         <title>NeoTech |Shopping Cart</title>
       </Helmet>
       <div className='shop-cart-container'>
         <List>{cartItemsListEffect}</List>
-        <Cart items={cartItems} />
+        <Cart items={cartItemsList} />
       </div>
     </>
   );

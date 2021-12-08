@@ -24,6 +24,7 @@ function SingleProductDesktop() {
           category: response.data.category.name,
           image: response.data.image,
           description: response.data.description,
+          quantity: 1
         });
         setCurrentImage(response.data.image.split('|')[0]);
       } catch (error) {
