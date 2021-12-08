@@ -101,7 +101,7 @@ export default function ShoppingCart() {
       </Helmet>
       <div className='shop-cart-container'>
         <List>{cartItemsListEffect}</List>
-        <Cart items={cartItems} />
+        <Cart items={cartItemsList} />
       </div>
     </>
   );

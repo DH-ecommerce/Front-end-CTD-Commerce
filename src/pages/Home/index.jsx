@@ -10,7 +10,7 @@ function Home() {
         <title>NeoTech | Home</title>
       </Helmet>
       <Banner />
-      {/* <CardCarousel /> */}
+      <CardCarousel />
       <Categories />
     </>
   );
