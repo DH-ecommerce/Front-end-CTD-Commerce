@@ -35,11 +35,14 @@ useEffect(() => {
           image: response.data.image,
           description: response.data.description
         });
+
+        
       } catch (error) {
           console.log(error)
       }
     }
     loadProductData();
+    
   }, [singleProduct]);
 
 
@@ -71,17 +74,14 @@ const responsive = {
     }
 
   };
-const arrImage = [product.image, product.image,  product.image, product.image]
-
   
+const arrImage = product.image ? product.image.split("|") : []
+
   return (
     <>
     <Container className="container-single-product">
       <h5 className="single-product-category mb-2">{product.category}</h5>
       <h1 className="single-product-title mb-5">{product.title}</h1>
-          
-            {/* <Container className='h-100' >
-      <Card className='d-flex flex-column justify-content-end' > */}
 
         <Container className="container-tabs">
           <Tabs defaultActiveKey="overview" className="mb-3">
