@@ -1,10 +1,16 @@
-.container-filter {
-    max-width: 30rem;
+// .container-filter {
+//     max-width: 30rem;
+// }
+
+.accordion-button{
+    background-color: transparent;
 }
 
 .accordion-button:not(.collapsed) { 
-    background-color: #FFFFFF;
+    background-color: transparent;
 }
+
+
 
 .buttons-categories {
     border-radius: 10px !important;
@@ -29,7 +35,7 @@
 .buttons-categories:focus {
     outline: none !important;
     box-shadow: none !important;
-    border-shadow: none !important;
+    // border-shadow: none !important;
     
 }
 
@@ -60,7 +66,8 @@
     border: 1px solid;
     border-radius: 10px;
     color: black;
-    border-color: black;   
+    border-color: black; 
+    
 }
 
 .accordion-button::after {
