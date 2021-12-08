@@ -1,6 +1,6 @@
 import Banner from '../components/Banner';
 import { Helmet } from 'react-helmet';
-/* import CardCarousel from '../components/CardCarousel'; */
+import CardCarousel from '../components/CardCarousel';
 import Categories from '../components/Categories';
 
 function Home() {
@@ -10,7 +10,7 @@ function Home() {
         <title>NeoTech | Home</title>
       </Helmet>
       <Banner />
-      {/*       <CardCarousel /> */}
+      <CardCarousel />
       <Categories />
     </>
   );

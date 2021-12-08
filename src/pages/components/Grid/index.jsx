@@ -2,14 +2,13 @@ import './index.scss';
 import api from '../../../services/api';
 import CardProduct from './CardProduct';
 import Filter from '../Filter';
-
+import { useParams } from 'react-router-dom';
 import { Container, Col, Row } from 'react-bootstrap';
 import React, { useState, useEffect, useCallback } from 'react';
 
 export default function CardGrid() {
   const [products, setProducts] = useState([]);
 
-  const [ products, setProducts ] = useState([]);
   const [ filterInfo, setFilterInfo ] = useState({ url: '/products/filter/all'})
   const { filtered } = useParams();
   

@@ -65,12 +65,14 @@ export default function CardCarousel() {
           {!!products && sortNumber().map(( productIdSorted ) => {
             return (
               <div className="mx-2"> 
+              <Link className='no-style' style={{ textDecoration: 'none', color: 'inherit' }} to={`/products/product/${products[productIdSorted]?.id}` }>
                 <OneCard 
                   key ={products[productIdSorted]?.id}
                   image={products[productIdSorted]?.image}
                   title={products[productIdSorted]?.title}
                   price={products[productIdSorted]?.price}
                   category={products[productIdSorted]?.category.name} />
+              </ Link>
               </div>
             );
           })}
