@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://3.92.77.5:8080'
+  baseURL:
+    'http://t2g1beanstalk-env.eba-q8yvkgmk.us-east-1.elasticbeanstalk.com/',
 });
 
 export default api;
