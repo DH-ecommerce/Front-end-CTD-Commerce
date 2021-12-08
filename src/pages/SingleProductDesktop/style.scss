@@ -13,3 +13,13 @@
     cursor: zoom-in;
   }
 }
+
+.button-back {
+  border: none;
+  width: 10vw;
+  text-align: start;
+  &:hover {
+    background-color: transparent;
+    color: #0acf83;
+  }
+}

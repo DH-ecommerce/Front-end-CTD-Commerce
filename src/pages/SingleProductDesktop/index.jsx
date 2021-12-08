@@ -30,19 +30,19 @@ function SingleProduct() {
   };
 
   return (
-    <>
-      <Container>
+    <Container>
+      <Container className='my-5 mx-0 px-0'>
         <Row>
-          <Button variant='outline-success' style={{ width: '10vw' }}>
+          <Button variant='outline-success' className='button-back' style={{}}>
             {`< Back`}
           </Button>
         </Row>
-        <Row className='my-4'>
+        <Row className='my-5'>
           <h2>{product.title}</h2>
         </Row>
       </Container>
-      <Container className='my-5' as='section'>
-        <Row className='p-0 m-0'>
+      <Container className='my-5 mx-0 p-0' as='section'>
+        <Row className='p-0 mx-0'>
           <Col md={2}>
             {productImage.length !== 0 &&
               productImage.map((image, arr, idx) => {
@@ -102,7 +102,7 @@ function SingleProduct() {
           </Col>
         </Row>
       </Container>
-    </>
+    </Container>
   );
 }
 
