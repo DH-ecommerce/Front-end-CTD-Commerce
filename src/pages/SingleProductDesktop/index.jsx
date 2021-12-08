@@ -12,24 +12,7 @@ function SingleProductDesktop() {
   const [currentImage, setCurrentImage] = useState([]);
 
   const { singleProduct } = useParams();
-  /* 
-  const loadProduct = async () => {
-    try {
-      const response = await api.get(`/products/product/${SingleProduct}`);
-      await setProduct({
-        id: response.data.id,
-        title: response.data.title,
-        price: response.data.price,
-        category: response.data.category.name,
-        image: response.data.image.split('|'),
-        description: response.data.description,
-      });
-      await setCurrentImage(response.data.image.split('|')[0]);
-    } catch (error) {
-      console.log(error);
-    }
-  };
- */
+
   useEffect(() => {
     async function loadProductData() {
       try {
@@ -73,7 +56,7 @@ function SingleProductDesktop() {
   return (
     <>
       <Helmet>
-        <title>{`Product | ${product.title}`}</title>
+        <title>{`NeoTech  | ${product?.title ? product.title : ''}`}</title>
       </Helmet>
       <Container>
         <Container className='my-5 mx-0 px-0'>
@@ -96,11 +79,10 @@ function SingleProductDesktop() {
           <Row className='p-0 mx-0'>
             <Col md={2}>
               {arrImage.length !== 0 &&
-                arrImage.map((image, arr, idx) => {
+                arrImage.map((image, idx) => {
                   return (
-                    <Row className='my-3'>
+                    <Row className='my-3' key={idx}>
                       <Image
-                        key={idx}
                         onClick={(e) => handleClick(e)}
                         className='hover-style'
                         src={image}
@@ -143,12 +125,15 @@ function SingleProductDesktop() {
                 )}
               </Container>
 
+              <Col className='align-self-end mt-5'>
+                <h4>BRL {product.price}</h4>
+              </Col>
               <Row>
                 <Col className='align-self-end'>
                   <Link to={`/shoppingCart`} style={{ textDecoration: 'none' }}>
                     <Button
                       variant='primary'
-                      className='px-5 w-100'
+                      className='px-5 w-100 m-0'
                       onClick={addProductToLocalStorage}
                     >
                       Add to Cart

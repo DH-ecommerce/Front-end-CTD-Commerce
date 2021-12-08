@@ -9,8 +9,6 @@ import React, { useState, useEffect, useCallback } from 'react';
 export default function CardGrid() {
   const [products, setProducts] = useState([]);
 
-  /*   const allProducts = '/products/filter/all'; */
-
   const [filterInfo, setFilterInfo] = useState({ url: '/products/filter/all' });
 
   const callbackFilterInfo = (filterInfo) => {
@@ -22,14 +20,12 @@ export default function CardGrid() {
     try {
       const response = await api.get(filterInfo.url);
       setProducts(response.data);
-      console.log(response.data);
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.log(error);
     }
   });
 
   useEffect(() => {
-    console.log(filterInfo.url);
     return gridProducts();
   }, [filterInfo.url]);
 
@@ -38,9 +34,9 @@ export default function CardGrid() {
       <Filter parentCallback={callbackFilterInfo} />
       <Container className='justify-content-center align-items-center pt-5 pb-5 '>
         <Row xs={1} md={2} className='g-4'>
-          {products.map((product) => {
+          {products.map((product, idx) => {
             return (
-              <Col md={3} sm={4} xs={6}>
+              <Col md={3} sm={4} xs={6} key={idx}>
                 <CardProduct
                   product={product}
                   id={product.id}

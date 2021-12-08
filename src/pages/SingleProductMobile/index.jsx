@@ -1,17 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Button, Container, Image, Tabs, Tab } from 'react-bootstrap';
+import { Button, Container, Image, Tabs, Tab, Row } from 'react-bootstrap';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import api from '../../services/api';
 import './style.scss';
-
-// const productListReduce = productList.reduce((acc, {id, ...restProduct})=>({
-//   ...acc,
-//   [id]: {id, ...restProduct}
-// }), {})
 
 function SingleProduct() {
   const [product, setProduct] = useState({});
@@ -22,7 +17,6 @@ function SingleProduct() {
     async function loadProductData() {
       try {
         const response = await api.get(`products/product/${singleProduct}`);
-        console.log(response.data);
 
         setProduct({
           id: response.data.id,
@@ -69,11 +63,12 @@ function SingleProduct() {
   return (
     <>
       <Helmet>
-        <title>{`Product | ${product.title}`}</title>
+        <title>{`NeoTech  | ${product?.title ? product.title : ''}`}</title>
       </Helmet>
       <Container className='container-single-product'>
         <h5 className='single-product-category mb-2'>{product.category}</h5>
         <h1 className='single-product-title mb-5'>{product.title}</h1>
+        <h4 className='single-product-title mb-2'>BRL {product.price}</h4>
 
         <Container className='container-tabs'>
           <Tabs defaultActiveKey='overview' className='mb-3'>
