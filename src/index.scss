@@ -1,5 +1,16 @@
-@import "~bootstrap/scss/bootstrap";
-@import "./utilities.scss";
+@import '~bootstrap/scss/bootstrap';
+@import './utilities.scss';
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body{
+    background-color: #F6F6F6;
+}
 
 textarea:hover,
 input:hover,
@@ -17,5 +28,3 @@ label:focus,
   -webkit-appearance: none;
   box-shadow: none !important;
 }
-
-

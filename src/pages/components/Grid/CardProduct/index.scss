@@ -13,3 +13,13 @@ border-color: transparent;
         display: block !important;
     }
 }
+
+.card-title{
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    } 
+
+.category-subtitle{
+color:  #0cb876 !important;
+    }

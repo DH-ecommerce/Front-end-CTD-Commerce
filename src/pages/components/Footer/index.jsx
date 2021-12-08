@@ -1,6 +1,8 @@
 import React from 'react';
 import { Col, Container, ListGroup } from 'react-bootstrap';
 import logo from '../../../assets/logo.svg';
+import { Link } from 'react-router-dom';
+import './style.scss';
 
 export default function Footer({ company }) {
   const generateDateString = () => {
@@ -11,23 +13,23 @@ export default function Footer({ company }) {
       : `${creationYear} - ${currentYear}`;
   };
   return (
-    <Container className='my-5 text-center'>
+    <Container className='my-5 text-center' as='footer'>
       <Col md={{ span: 6, offset: 3 }} sm={{ span: 10, offset: 1 }}>
         <ListGroup as='ul' horizontal className='justify-content-center'>
           <ListGroup.Item as='li' className='nav-item'>
-            <a href='index.html' className='nav-link px-2 text-muted'>
+            <Link to='/' className='nav-link px-2 text-muted'>
               Home
-            </a>
+            </Link>
           </ListGroup.Item>
           <ListGroup.Item as='li' className='nav-item'>
-            <a href='index.html' className='nav-link px-2 text-muted'>
+            <Link to='/products' className='nav-link px-2 text-muted'>
               Products
-            </a>
+            </Link>
           </ListGroup.Item>
           <ListGroup.Item as='li' className='nav-item'>
-            <a href='index.html' className='nav-link px-2 text-muted'>
+            <Link to='/team' className='nav-link px-2 text-muted'>
               Team
-            </a>
+            </Link>
           </ListGroup.Item>
         </ListGroup>
       </Col>

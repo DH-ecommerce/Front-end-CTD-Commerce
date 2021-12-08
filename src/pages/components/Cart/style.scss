@@ -1,9 +1,10 @@
-.bag__total{
+.cart__total{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 1rem .5rem 0 .5rem;
-
+  width: 90%;
+  margin: auto;
+  max-width: 555px;
 }
 
 .total-quantity-h6{
@@ -27,4 +28,6 @@
   text-align: right;
   
 }
-
+.btn-col{
+  padding: 0 !important;
+}

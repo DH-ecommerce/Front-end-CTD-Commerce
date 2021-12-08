@@ -1,24 +1,75 @@
-.container-filter {
-    max-width: 30rem;
-}
+// .container-filter {
+//     max-width: 30rem;
+// }
 
 .accordion-button:not(.collapsed) { 
     background-color: #FFFFFF;
 }
 
 .buttons-categories {
-    background-color: #0ACF83 !important;
-    border: none !important;
     border-radius: 10px !important;
-    
+    border: black 1px solid !important;
+    color: black; 
+}
 
+
+.buttons-categories:hover,
+.buttons-categories:active,
+.buttons-categories:focus,
+.buttons-categories:checked {
+    
+    justify-content: center;
+    align-items: center;
+    background-color: #0ACF83 !important;
+    border: #0ACF83 1px solid !important;
+    border-radius: 10px;
+}
+
+
+.buttons-categories:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border-shadow: none !important;
+    
+}
+
+.btn-check:checked + .btn-outline-success {
+    background-color: #0ACF83 !important;
+    border: #0ACF83 1px !important;
+    
 }
 
 .apply {
+    background-color: #0ACF83;
+    border-radius: 10px;
+    border: none;
     width: 100%;
-    margin: 0;
-    
+    margin: 0;  
 }
+
+.apply:hover {
+    transition: .4s;
+    background-color: #12885b;
+}
+
+.apply:focus {
+    background-color: #12885b !important;
+}
+
+.filter-button:not(.collapsed) {
+    border: 1px solid;
+    border-radius: 10px;
+    color: black;
+    border-color: black;   
+}
+
+.accordion-button::after {
+    background-image: none !important;
+}
+
+
+
+
 
 
 

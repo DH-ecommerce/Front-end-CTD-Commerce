@@ -1,30 +1,60 @@
-import './index.scss'
-import { CardGroup, Container, Col, Row } from 'react-bootstrap';
+import './index.scss';
+import api from '../../../services/api';
 import CardProduct from './CardProduct';
-import productList from '../Grid/assets/API'
+import Filter from '../Filter';
 
+import { Container, Col, Row } from 'react-bootstrap';
+import React, { useState, useEffect, useCallback } from 'react';
 
 export default function CardGrid() {
+  const [products, setProducts] = useState([]);
+
+  /*   const allProducts = '/products/filter/all'; */
+
+  const [filterInfo, setFilterInfo] = useState({ url: '/products/filter/all' });
+
+  const callbackFilterInfo = (filterInfo) => {
+    setFilterInfo({ url: '/products/product/' + filterInfo });
+    return filterInfo.url;
+  };
+
+  const gridProducts = useCallback(async () => {
+    try {
+      const response = await api.get(filterInfo.url);
+      setProducts(response.data);
+      console.log(response.data);
+    } catch (e) {
+      console.log(e);
+    }
+  });
+
+  useEffect(() => {
+    console.log(filterInfo.url);
+    return gridProducts();
+  }, [filterInfo.url]);
+
   return (
     <>
-      <Container className="justify-content-center align-items-center pt-5 pb-5 ">
-        
-        <Row xs={1} md={2} className="g-4">
-
-          {
-            productList.map(({ id, img, title, price, category }) => {
-              return (
-
-                <Col md={3} sm={4} xs={6}>
-                  <CardProduct img={img} title={title} price={price} category={category} />
-                </Col>
-              )
-            })
-          }
-
+      <Filter parentCallback={callbackFilterInfo} />
+      <Container className='justify-content-center align-items-center pt-5 pb-5 '>
+        <Row xs={1} md={2} className='g-4'>
+          {products.map((product) => {
+            return (
+              <Col md={3} sm={4} xs={6}>
+                <CardProduct
+                  product={product}
+                  id={product.id}
+                  key={product.id}
+                  img={product.image}
+                  title={product.title}
+                  price={product.price}
+                  category={product.category.name}
+                />
+              </Col>
+            );
+          })}
         </Row>
       </Container>
     </>
-
-  )
+  );
 }
