@@ -8,13 +8,14 @@ import api from '../../services/api';
 function SingleProduct() {
   const [product, setProduct] = useState([]);
   const [productImage, setProductImage] = useState([]);
+  const [currentImage, setCurrentImage] = useState([]);
 
   const loadProduct = async () => {
     try {
       const response = await api.get('/products/8');
       setProduct(response.data);
-      console.log(response.data.image);
-      setProductImage(response.data.image);
+      setProductImage(response.data.image.split('|'));
+      setCurrentImage(response.data.image.split('|')[0]);
     } catch (error) {
       console.log(error);
     }
@@ -23,80 +24,85 @@ function SingleProduct() {
   useEffect(() => {
     return loadProduct();
   }, []);
-  /*   loadProduct(); */
 
-  const handleClick = (element) => {
-    setProductImage(element.currentTarget.src);
+  const handleClick = (e) => {
+    setCurrentImage(e.currentTarget.src);
   };
 
-  const array = [
-    product.image,
-    'https://elgstore.vteximg.com.br/arquivos/ids/164667-290-290/MGDR_ELG_01.jpg?v=637453882918600000',
-    'https://opiniaobomvaleapena.com.br/imagens/mouse-gamer-fortrek-raptor-om-801-preto-e-verde.png',
-    product.image,
-  ];
-
   return (
-    <Container className='my-5' as='section'>
-      <Row className='p-0 m-0'>
-        <Col md={2}>
-          {productImage.length !== 0 &&
-            array.map((image) => {
-              return (
-                <Row className='my-3'>
-                  <Image
-                    onClick={(e) => handleClick(e)}
-                    className='hover-style'
-                    src={image}
-                    alt=''
-                    style={{ maxHeight: '12vh', objectFit: 'contain' }}
-                  />
-                </Row>
-              );
-            })}
-        </Col>
-        <Col md={6} className='mx-0 px-0 d-flex justify-content-center'>
-          {productImage.length !== 0 && (
-            <ImageMagnifier
-              src={productImage}
-              height={'50vh'}
-              className='zoom'
-              style={{
-                objectFit: 'scale-down',
-                alignSelf: 'center',
-              }}
-            />
-          )}
-        </Col>
-        <Col className='d-grid'>
-          <Container className='gap-5 p-0'>
-            {product.length !== 0 && (
-              <>
-                <Row>
-                  <Col>
-                    <p style={{ fontWeight: 'bold' }}>{product.title}</p>
-                  </Col>
-                </Row>
-
-                <Row>
-                  <Col>
-                    <p>{product.description}</p>
-                  </Col>
-                </Row>
-              </>
+    <>
+      <Container>
+        <Row>
+          <Button variant='outline-success' style={{ width: '10vw' }}>
+            {`< Back`}
+          </Button>
+        </Row>
+        <Row className='my-4'>
+          <h2>{product.title}</h2>
+        </Row>
+      </Container>
+      <Container className='my-5' as='section'>
+        <Row className='p-0 m-0'>
+          <Col md={2}>
+            {productImage.length !== 0 &&
+              productImage.map((image, arr, idx) => {
+                return (
+                  <Row className='my-3'>
+                    <Image
+                      key={idx}
+                      onClick={(e) => handleClick(e)}
+                      className='hover-style'
+                      src={image}
+                      alt=''
+                      style={{ maxHeight: '12vh', objectFit: 'contain' }}
+                    />
+                  </Row>
+                );
+              })}
+          </Col>
+          <Col md={6} className='mx-0 px-0 d-flex justify-content-center'>
+            {productImage.length !== 0 && (
+              <ImageMagnifier
+                src={currentImage}
+                height={'50vh'}
+                className='zoom'
+                style={{
+                  objectFit: 'scale-down',
+                  alignSelf: 'center',
+                }}
+              />
             )}
-          </Container>
+          </Col>
+          <Col className='d-grid'>
+            <Container className='gap-5 p-0'>
+              {product.length !== 0 && (
+                <>
+                  <Row>
+                    <Col>
+                      <p style={{ fontWeight: 'bold' }}>{product.title}</p>
+                    </Col>
+                  </Row>
 
-          <Row>
-            <Col className='align-self-end'>
-              <Button variant='primary' className='px-5 w-100'>
-                Buy
-              </Button>
-            </Col>
-          </Row>
-        </Col>
-      </Row>
-    </Container>
+                  <Row>
+                    <Col>
+                      <p>{product.description}</p>
+                    </Col>
+                  </Row>
+                </>
+              )}
+            </Container>
+
+            <Row>
+              <Col className='align-self-end'>
+                <Button variant='primary' className='px-5 w-100'>
+                  Buy
+                </Button>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
 }
 
