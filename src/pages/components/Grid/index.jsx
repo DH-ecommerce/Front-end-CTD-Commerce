@@ -34,7 +34,7 @@ export default function CardGrid() {
 
   useEffect(() => {
     console.log('filter info:', filterInfo.url)
-    
+        
     return gridProducts();
   }, [filtered]);
   
