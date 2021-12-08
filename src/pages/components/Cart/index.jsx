@@ -63,7 +63,7 @@ export default function Cart({ items }) {
       </style>
       <Button className="btn-checkout" variant="primary">
         <span> Proceed to Checkout </span>
-        <span> > </span>
+        <span>  </span>
       </Button>
       </Col>
     </Row>
