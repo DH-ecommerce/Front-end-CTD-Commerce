@@ -5,7 +5,7 @@ import './style.scss';
 import ImageMagnifier from '../components/ImageMagnifier';
 import api from '../../services/api';
 
-function SingleProduct() {
+function SingleProductDesktop() {
   const [product, setProduct] = useState([]);
   const [productImage, setProductImage] = useState([]);
   const [currentImage, setCurrentImage] = useState([]);
@@ -106,4 +106,4 @@ function SingleProduct() {
   );
 }
 
-export default SingleProduct;
+export default SingleProductDesktop;

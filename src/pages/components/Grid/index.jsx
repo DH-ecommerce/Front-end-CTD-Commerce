@@ -1,19 +1,30 @@
 import './index.scss';
-import { Container, Col, Row } from 'react-bootstrap';
+import api from '../../../services/api';
 import CardProduct from './CardProduct';
-import productList from '../Grid/assets/API';
-import api from '../../../services/api'
+import Filter from '../Filter';
+
+import { Container, Col, Row } from 'react-bootstrap';
 import React, { useState, useEffect, useCallback } from 'react'
+import { useParams } from 'react-router-dom';
 
 export default function CardGrid() {
 
   const [ products, setProducts ] = useState([]);
-  const allProducts = '/products/all'
+
+  const allProducts = '/products/filter/all'
+
+  const [ filterInfo, setFilterInfo ] = useState({ url: '/products/filter/all'})
+
+  const callbackFilterInfo = (filterInfo) => {
+    setFilterInfo({url: '/products/' + filterInfo})
+    return filterInfo.url; 
+  }
+
   
   const gridProducts = useCallback(async () => {
         
         try {
-          const response = await api.get(allProducts);
+          const response = await api.get(filterInfo.url);
           setProducts(response.data);
           console.log(response.data);
 
@@ -22,21 +33,22 @@ export default function CardGrid() {
         }
   })
 
-
   useEffect(() => {
+    console.log(filterInfo.url)
     return gridProducts();
-  }, []);
- 
+  }, [filterInfo.url]);
   
   return (
     <>
+      <Filter parentCallback={callbackFilterInfo} />
       <Container className='justify-content-center align-items-center pt-5 pb-5 '>
         <Row xs={1} md={2} className='g-4'>
           {products.map( product => {
             return (
-              
               <Col md={3} sm={4} xs={6}>
                 <CardProduct
+                  product={product}
+                  id={product.id}
                   key={product.id}
                   img={product.image}
                   title={product.title}

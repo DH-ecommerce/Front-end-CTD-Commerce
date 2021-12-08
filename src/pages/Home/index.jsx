@@ -1,9 +1,13 @@
-import SingleProduct from '../SingleProductDesktop';
+import Banner from '../components/Banner';
+import CardCarousel from '../components/CardCarousel';
+import Categories from '../components/Categories';
 
 function Home() {
   return (
     <>
-      <SingleProduct />
+      <Banner />
+      <CardCarousel />
+      <Categories />
     </>
   );
 }

@@ -27,7 +27,7 @@ export default function Header() {
               <LinkContainer to='/'>
                 <Nav.Link as='li'>Home</Nav.Link>
               </LinkContainer>
-              <LinkContainer to='/products'>
+              <LinkContainer to='/products/filter/all'>
                 <Nav.Link as='li'>Products</Nav.Link>
               </LinkContainer>
               <LinkContainer to='/team'>
