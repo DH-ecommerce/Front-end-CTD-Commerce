@@ -41,7 +41,7 @@ export default function CardGrid() {
     <>
     
       <Filter  parentCallback={callbackFilterInfo}/>
-      <Container className='justify-content-center align-items-center pt-5 pb-5 '>
+      <Container className='justify-content-center align-items-center pt-5 pb-5'>
         <Row xs={1} md={2} className='g-4'>
           {products.map((product, idx) => {
             return (

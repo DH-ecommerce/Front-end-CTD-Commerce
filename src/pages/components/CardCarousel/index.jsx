@@ -1,6 +1,6 @@
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import { Container } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import OneCard from './Card';
 import { Link } from 'react-router-dom';
 import "./style.scss";
@@ -64,16 +64,18 @@ export default function CardCarousel() {
         <Carousel responsive={responsive}>
           {!!products && sortNumber().map(( productIdSorted ) => {
             return (
-              <div className="mx-2"> 
-              <Link className='no-style' style={{ textDecoration: 'none', color: 'inherit' }} to={`/products/product/${products[productIdSorted]?.id}` }>
-                <OneCard 
-                  key ={products[productIdSorted]?.id}
-                  image={products[productIdSorted]?.image}
-                  title={products[productIdSorted]?.title}
-                  price={products[productIdSorted]?.price}
-                  category={products[productIdSorted]?.category.name} />
-              </ Link>
-              </div>
+              <Container className='justify-content-center align-items-center'>
+                <Row xs={1} md={2} className='g-4'>
+                <Link className='no-style' style={{ textDecoration: 'none', color: 'inherit' }} to={`/products/product/${products[productIdSorted]?.id}` }>
+                  <OneCard 
+                    key ={products[productIdSorted]?.id}
+                    image={products[productIdSorted]?.image}
+                    title={products[productIdSorted]?.title}
+                    price={products[productIdSorted]?.price}
+                    category={products[productIdSorted]?.category.name} />
+                </ Link>
+                </Row>
+              </Container>
             );
           })}
         </Carousel>
