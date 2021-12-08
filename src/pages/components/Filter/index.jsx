@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './style.scss';
 import { Container, ToggleButton, Accordion, Row, Col, ButtonGroup, ToggleButtonGroup } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const Filter = ({parentCallback}) => {
   const [checkedCategory, setCheckedCategory] = useState(false);
@@ -19,22 +20,23 @@ const Filter = ({parentCallback}) => {
   ])
 
   const handleClickFilter = (e, radio) => {
+    window.location.href='http://localhost:3000/products/filter/' + e.currentTarget.value;
     setRadioValueCategory(e.currentTarget.value)
-    parentCallback('filter/' + e.currentTarget.value)
+    parentCallback(e.currentTarget.value)
   }
 
   const radiosSort = [
     { name: 'Newest', value: '5' },
     { name: 'Oldest', value: '6' }
   ]
-
+  
   return (
     <>
       <Container>
         <Container className='container-filter m-0 d-flex'>
           <Accordion>
-            <Accordion.Header>
-              <Row className="d-flex align-items-center filter-button p-2">
+            <Accordion.Header style={{ backgroundColor: 'transparent' }}>
+              <Row className="d-flex align-items-center filter-button p-2" >
                 <Col>
                   <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M3.33331 18V12.1667" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -58,25 +60,25 @@ const Filter = ({parentCallback}) => {
               <Container className='d-flex gap-4 flex-wrap p-0'>
                 <ToggleButtonGroup type="radio" name="categories" className='d-flex gap-3'>
                   {radiosCategory.map((radio, idx) => (
-                    <ToggleButton
-                      className='buttons-categories shadow-none'
-                      key= {idx}
-                      id={`radio-${radio.value}`}
-                      type="radio"
-                      variant="outline-success"
-                      name="categories"
-                      value={radio.value}
-                      checked={radioValueCategory === radio.value}
-                      onChange={(e) => handleClickFilter(e, radio)}
-                    >
-                      {radio.name}
-                    </ToggleButton>
+                    <Link to={`/products/filter/${radio.value}`}>
+                      <ToggleButton
+                        className='buttons-categories shadow-none'
+                        key= {idx}
+                        id={`radio-${radio.value}`}
+                        type="radio"
+                        variant="outline-success"
+                        name="categories"
+                        value={radio.value}
+                        checked={radioValueCategory === radio.value}
+                        onChange={(e) => handleClickFilter(e, radio)}
+                      >
+                        {radio.name}
+                      </ToggleButton>
+                    </Link>
                   )
                   )}
                 </ToggleButtonGroup>
               </Container>
-              
-              
             </Accordion.Body>
           </Accordion>
         </Container>

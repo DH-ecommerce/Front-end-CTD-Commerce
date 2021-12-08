@@ -22,7 +22,7 @@ function SingleProduct() {
 useEffect(() => {
     async function loadProductData() {
       try {
-        const response = await api.get(`products/${singleProduct}`);
+        const response = await api.get(`products/product/${singleProduct}`);
         console.log(response.data)
         setProduct({
           id: response.data.id,

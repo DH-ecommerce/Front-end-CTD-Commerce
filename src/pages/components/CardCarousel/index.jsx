@@ -30,7 +30,7 @@ export default function CardCarousel() {
       <Container>
         <div className="clearfix my-4">
           <h4 className='float-start ms-2'>Featured products</h4>
-          <Link className='see-all float-end me-2' to="/products">see all</Link>
+          <Link className='see-all float-end me-2' to="/products/filter/all">see all</Link>
         </div>
         <Carousel responsive={responsive}>
           {productList.map(({ id, img, title, price, category }) => {

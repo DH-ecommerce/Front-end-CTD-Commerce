@@ -11,32 +11,37 @@ export default function CardGrid() {
 
   const [ products, setProducts ] = useState([]);
   const [ filterInfo, setFilterInfo ] = useState({ url: '/products/filter/all'})
+  const { filtered } = useParams();
+  
 
   const callbackFilterInfo = (filterInfo) => {
-    setFilterInfo({url: '/products/' + filterInfo})
-    return filterInfo.url; 
+    setFilterInfo({url: '/products/filter/' + filterInfo})
+    
   }
   
   const gridProducts = useCallback(async () => {
-        
-        try {
-          const response = await api.get(filterInfo.url);
-          setProducts(response.data);
-          console.log(response.data);
+    console.log("parametro da da url", filtered)
+    try {
 
-        } catch (e) {
-          console.log(e);
-        }
+        const response = await api.get('/products/filter/' + filtered)
+        setProducts(response.data);
+        console.log(response.data);
+
+    } catch (e) {
+      console.log(e)
+    }
   })
 
   useEffect(() => {
-    console.log(filterInfo.url)
+    console.log('filter info:', filterInfo.url)
+    
     return gridProducts();
-  }, [filterInfo.url]);
+  }, [filtered]);
   
   return (
     <>
-      <Filter parentCallback={callbackFilterInfo} />
+    
+      <Filter  parentCallback={callbackFilterInfo}/>
       <Container className='justify-content-center align-items-center pt-5 pb-5 '>
         <Row xs={1} md={2} className='g-4'>
           {products.map( product => {

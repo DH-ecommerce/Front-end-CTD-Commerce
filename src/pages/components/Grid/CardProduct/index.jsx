@@ -24,11 +24,11 @@ export default function CardProduct({ id, img, title, price, category }) {
           <Card.Img src={img} variant="top" style={{  maxHeight: '20vh', objectFit: 'contain', minHeight: '20vh'}} />
           <Card.Body>
             <Card.Subtitle className="mb-2 text-muted category-subtitle">{category}</Card.Subtitle>
-            <Card.Title><Link className='no-style' to={`/products/${id}`}>{title}</Link></Card.Title>
+            <Card.Title><Link className='no-style' to={`/products/product/${id}`}>{title}</Link></Card.Title>
             <Card.Subtitle className="mb-2 text-muted">BRL {price}</Card.Subtitle>
           </Card.Body>
 
-          <Link className="no-style" to={`/products/${id}`}>
+          <Link className="no-style" to={`/products/product/${id}`}>
             <Card.Footer className="d-flex justify-content-between bg-white" >
               <div>
                 <BsFillStarFill className='mb-1' style={{ color: 'gold' }} /><small className="text-muted"> 4.7</small>

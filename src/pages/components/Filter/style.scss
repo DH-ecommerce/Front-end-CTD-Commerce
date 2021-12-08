@@ -3,7 +3,11 @@
 // }
 
 .accordion-button:not(.collapsed) { 
-    background-color: #FFFFFF;
+    background-color: transparent;
+}
+
+.accordion-button {
+    background-color: transparent;
 }
 
 .buttons-categories {
@@ -56,12 +60,21 @@
     background-color: #12885b !important;
 }
 
+
 .filter-button:not(.collapsed) {
     border: 1px solid;
     border-radius: 10px;
     color: black;
-    border-color: black;   
+    border-color: black;
+    
 }
+
+.accordion-button .collapsed {
+    .filter-button {
+        background-color: red !important;
+    }
+}
+
 
 .accordion-button::after {
     background-image: none !important;
