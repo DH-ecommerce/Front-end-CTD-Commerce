@@ -6,7 +6,7 @@ function Home() {
   return (
     <>
       <Banner />
-      <CardCarousel />
+      {/* <CardCarousel /> */}
       <Categories />
     </>
   );

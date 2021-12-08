@@ -1,0 +1,25 @@
+.hover-style {
+  cursor: pointer;
+  transform: scale(0.9);
+  transition: transform 0.5s ease-in-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.zoom {
+  &:hover {
+    cursor: zoom-in;
+  }
+}
+
+.button-back {
+  border: none;
+  width: 10vw;
+  text-align: start;
+  &:hover {
+    background-color: transparent;
+    color: #0acf83;
+  }
+}

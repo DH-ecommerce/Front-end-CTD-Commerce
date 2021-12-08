@@ -1,29 +1,41 @@
 import React from 'react';
-import { listProducts } from '../../assets/data/data.js';
 import CardCart from '../components/CardCart';
 import List from '../components/List';
 import Cart from '../components/Cart';
-import {Container, Button} from 'react-bootstrap';
-import "./style.scss"
-import {useState, useEffect} from 'react'
+import './style.scss';
+import { useState, useEffect } from 'react';
 
 export default function ShoppingCart() {
-  const [cartItems, setCartItems] = useState({});
+
+  const productsLocalStorage = JSON.parse(localStorage.getItem('products'));
+
+  const productListReduce =
+    productsLocalStorage != null
+      ? productsLocalStorage.reduce(
+          (acc, { id, ...restProduct }) => ({
+            ...acc,
+            [id]: { id, ...restProduct },
+          }),
+          {}
+        )
+      : [];
+
+  const [cartItemsList, setCartItemsList] = useState(productListReduce);
 
   const setItemCart = (product) => {
-    !cartItems[product.id]
-      ? setCartItems({
-          ...cartItems,
+    !cartItemsList[product.id]
+      ? setCartItemsList({
+          ...cartItemsList,
           [product.id]: {
             ...product,
             quantity: 1,
           },
         })
-      : setCartItems({
-          ...cartItems,
+      : setCartItemsList({
+          ...cartItemsList,
           [product.id]: {
             ...product,
-            quantity: ++cartItems[product.id].quantity,
+            quantity: ++cartItemsList[product.id].quantity,
           },
         });
   };
@@ -33,69 +45,58 @@ export default function ShoppingCart() {
   const itemInCartIsLOEOne = (product) => product?.quantity <= 1;
 
   function deleteItemAndUpdateCart(product) {
-    delete cartItems[product.id];
-    setCartItems({ ...cartItems });
+    delete cartItemsList[product.id];
+    setCartItemsList({ ...cartItemsList });
   }
 
   function removeItemCart(productId) {
-    if (haveItemInCart(cartItems[productId])) {
-      itemInCartIsLOEOne(cartItems[productId])
-        ? deleteItemAndUpdateCart(cartItems[productId])
-        : setCartItems({
-            ...cartItems,
+    if (haveItemInCart(cartItemsList[productId])) {
+      itemInCartIsLOEOne(cartItemsList[productId])
+        ? deleteItemAndUpdateCart(cartItemsList[productId])
+        : setCartItemsList({
+            ...cartItemsList,
             [productId]: {
-              ...cartItems[productId],
-              quantity: --cartItems[productId].quantity,
+              ...cartItemsList[productId],
+              quantity: --cartItemsList[productId].quantity,
             },
           });
     }
   }
 
-  const productsLocalStorage = JSON.parse(localStorage.getItem("products"));
-
-  const productListReduce = productsLocalStorage != null ? productsLocalStorage.reduce((acc, {id, ...restProduct})=>({
-    ...acc,
-    [id]: {id, ...restProduct} 
-  }), {}) : [];
-
-  const [cartItemsList, setCartItemsList] = useState(productListReduce);
   const [cartItemsListEffect, setCartItemsListEffect] = useState();
 
-async function promiseRemove (product) {
-   return product?.quantity > 0 && removeItemCart(product.id)
-}
-  async function deleteItem (product) {
-    await promiseRemove(product)
-    delete cartItemsList[product.id]
-    // localStorage.setItem("products", JSON.stringify(productsLocalStorage.filter(p=>p.id !== product.id)))
-    setCartItemsList({ ...cartItemsList })
+
+  function deleteItem(product) {
+    delete cartItemsList[product.id];
+    localStorage.setItem(
+      'products',
+      JSON.stringify(productsLocalStorage.filter((p) => p.id !== product.id))
+    );
+    setCartItemsList({ ...cartItemsList });
   }
 
   useEffect(() => {
-    function renderCartList(){
-
+    function renderCartList() {
       setCartItemsListEffect(
-          Object.values(cartItemsList).map((product, index) => (
-            <CardCart
-              product={product}
-              onAddItemCart={setItemCart}
-              onRemoveItemCart={removeItemCart}
-              key={`product-${index}`}
-              items={cartItems}
-              onDeleteItem={deleteItem}
-            />
-          ))
-        );
+        Object.values(cartItemsList).map((product, index) => (
+          <CardCart
+            product={product}
+            onAddItemCart={setItemCart}
+            onRemoveItemCart={removeItemCart}
+            key={`product-${index}`}
+            items={cartItemsList}
+            onDeleteItem={deleteItem}
+          />
+        ))
+      );
     }
     renderCartList();
-  }, [cartItemsList, cartItems]);
- 
+  }, [cartItemsList]);
   return (
-    <div className="shop-cart-container">
-      <List>
-        {cartItemsListEffect}
-      </List>
-      <Cart items={cartItems} />  
+    <div className='shop-cart-container'>
+      <List>{cartItemsListEffect}</List>
+      
+      <Cart items={cartItemsList}/>
     </div>
   );
 }
