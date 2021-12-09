@@ -2,12 +2,11 @@ import React from 'react';
 import CardCart from '../components/CardCart';
 import List from '../components/List';
 import Cart from '../components/Cart';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import './style.scss';
 import { useState, useEffect } from 'react';
 
 export default function ShoppingCart() {
-
   const productsLocalStorage = JSON.parse(localStorage.getItem('products'));
 
   const productListReduce =
@@ -66,7 +65,6 @@ export default function ShoppingCart() {
 
   const [cartItemsListEffect, setCartItemsListEffect] = useState();
 
-
   function deleteItem(product) {
     delete cartItemsList[product.id];
     localStorage.setItem(
@@ -92,9 +90,9 @@ export default function ShoppingCart() {
       );
     }
     renderCartList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cartItemsList]);
   return (
-
     <>
       <Helmet>
         <title>NeoTech |Shopping Cart</title>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button, Container, Image, Tabs, Tab } from 'react-bootstrap';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
@@ -25,7 +25,7 @@ function SingleProduct() {
           category: response.data.category.name,
           image: response.data.image,
           description: response.data.description,
-          quantity: 1
+          quantity: 1,
         });
       } catch (error) {
         console.log(error);
@@ -76,21 +76,22 @@ function SingleProduct() {
             <Tab eventKey='overview' title='Overview'>
               <Container className='container-single-product-carousel'>
                 <Carousel responsive={responsive}>
-                  {arrImage.length !== 0 && arrImage.map((img, i) => {
-                    return (
-                      <div
-                        key={i}
-                        className='justify-content-center align-items-center single-product-image-div'
-                      >
-                        <Image
-                          className='single-product-image'
-                          src={img}
-                          rounded
-                          fluid
-                        />
-                      </div>
-                    );
-                  })}
+                  {arrImage.length !== 0 &&
+                    arrImage.map((img, i) => {
+                      return (
+                        <div
+                          key={i}
+                          className='justify-content-center align-items-center single-product-image-div'
+                        >
+                          <Image
+                            className='single-product-image'
+                            src={img}
+                            rounded
+                            fluid
+                          />
+                        </div>
+                      );
+                    })}
                 </Carousel>
               </Container>
             </Tab>

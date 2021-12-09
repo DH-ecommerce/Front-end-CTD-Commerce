@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Container, Col, Row, Button, Image } from 'react-bootstrap';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import './style.scss';
 
 import ImageMagnifier from '../components/ImageMagnifier';
@@ -24,7 +24,7 @@ function SingleProductDesktop() {
           category: response.data.category.name,
           image: response.data.image,
           description: response.data.description,
-          quantity: 1
+          quantity: 1,
         });
         setCurrentImage(response.data.image.split('|')[0]);
       } catch (error) {

@@ -9,38 +9,32 @@ import React, { useState, useEffect, useCallback } from 'react';
 export default function CardGrid() {
   const [products, setProducts] = useState([]);
 
-  const [ filterInfo, setFilterInfo ] = useState({ url: '/products/filter/all'})
+  // eslint-disable-next-line no-unused-vars
+  const [filterInfo, setFilterInfo] = useState({ url: '/products/filter/all' });
   const { filtered } = useParams();
-  
 
   const callbackFilterInfo = (filterInfo) => {
-    setFilterInfo({url: '/products/filter/' + filterInfo})
-    
-  }
-  
+    setFilterInfo({ url: '/products/filter/' + filterInfo });
+  };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const gridProducts = useCallback(async () => {
-    console.log("parametro da da url", filtered)
     try {
-
-        const response = await api.get('/products/filter/' + filtered)
-        setProducts(response.data);
-        console.log(response.data);
-
+      const response = await api.get('/products/filter/' + filtered);
+      setProducts(response.data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  })
+  });
 
   useEffect(() => {
-    console.log('filter info:', filterInfo.url)
-        
     return gridProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filtered]);
-  
+
   return (
     <>
-    
-      <Filter  parentCallback={callbackFilterInfo}/>
+      <Filter parentCallback={callbackFilterInfo} />
       <Container className='justify-content-center align-items-center pt-5 pb-5'>
         <Row xs={1} md={2} className='g-4'>
           {products.map((product, idx) => {

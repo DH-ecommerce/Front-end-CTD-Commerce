@@ -2,7 +2,7 @@ import './style.scss';
 import React from 'react';
 import { Card, Container, Row } from 'react-bootstrap';
 import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 
 import gusta from '../../assets/imgs/gusta_img_2.jpg';
 import edu from '../../assets/imgs/edu_img.jpg';
@@ -17,15 +17,15 @@ function Team() {
       image: gusta,
       name: 'Gustavo Barretto',
       description: 'Fullstack Developer',
-      github: '',
-      linkedin: '',
+      github: 'https://github.com/gustavobarretto',
+      linkedin: 'https://www.linkedin.com/in/gustavo-barretto1/',
     },
     {
       image: edu,
       name: 'Eduardo Araújo',
       description: 'Fullstack Developer',
-      github: '',
-      linkedin: '',
+      github: 'https://github.com/eduardoaraujogomes',
+      linkedin: 'https://www.linkedin.com/in/eduaraujofilho/',
     },
     {
       image: vitor,
@@ -38,8 +38,8 @@ function Team() {
       image: ste,
       name: 'Stefany Lovato',
       description: 'Fullstack Developer',
-      github: '',
-      linkedin: '',
+      github: 'https://github.com/stefanylovato',
+      linkedin: 'https://www.linkedin.com/in/stefany-lovato-680748216/',
     },
     {
       image: sophie,
@@ -52,8 +52,8 @@ function Team() {
       image: nader,
       name: 'Marcelo Nader',
       description: 'Fullstack Developer',
-      github: '',
-      linkedin: '',
+      github: 'https://github.com/marcelonader',
+      linkedin: 'https://www.linkedin.com/in/marcelonader/',
     },
   ];
 
@@ -70,8 +70,8 @@ function Team() {
               <Container className='my-4' key={idx}>
                 <Card className='p-2'>
                   <Card.Img src={member.image} style={{ maxHeight: '65vh' }} />
-                  <Card.Title className="my-2">{member.name}</Card.Title>
-                  <Card.Text >{member.description}</Card.Text>
+                  <Card.Title className='my-2'>{member.name}</Card.Title>
+                  <Card.Text>{member.description}</Card.Text>
                   <div className='d-flex gap-4 icon_div'>
                     <a
                       target='_blank'

@@ -1,5 +1,5 @@
 import Banner from '../components/Banner';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import CardCarousel from '../components/CardCarousel';
 import Categories from '../components/Categories';
 
