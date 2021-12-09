@@ -1,6 +1,6 @@
 import array from './array';
 import React from 'react';
-import { Card } from 'react-bootstrap';
+import { Card, Col, Container, Row } from 'react-bootstrap';
 import ReactStars from 'react-stars';
 import '../ClientReview/style.scss';
 
@@ -11,26 +11,41 @@ export default function ClientReview() {
       <div>
         {array.map(({ id, image, content, name, time }) => {
           return (
-            <React.Fragment key={id}>
-              <Card style={{ border: 'transparent' }} className='mb-4'>
+            <Container key={id}>
+              <Card
+                style={{
+                  border: 'transparent',
+                  height: '100%',
+                  minHeight: '100%',
+                }}
+                className='mb-5 p-2'
+              >
                 <Card.Body className='user_div'>
-                  <Card.Img
-                    variant='top'
-                    src={image}
-                    className='profile_image'
-                  />
-                  <Card.Title className='name'>{name}</Card.Title>
-                  <Card.Text className='time'>{time}</Card.Text>
-                  <ReactStars
-                    className='star'
-                    count={5}
-                    size={20}
-                    color2={'#ffd700'}
-                  />
-                  <Card.Text className='content'>{content}</Card.Text>
+                  <Row>
+                    <Col lg={2} sm={2} xs={3}>
+                      <Card.Img
+                        sm={2}
+                        style={{ maxWidth: '8vw', minWidth: '50px' }}
+                        src={image}
+                      />
+                    </Col>
+                    <Col lg={10} sm={10} xs={9}>
+                      <Card.Title className='name'>{name}</Card.Title>
+                      <Card.Text className='time'>{time}</Card.Text>
+                      <ReactStars
+                        className='star'
+                        count={5}
+                        size={20}
+                        color2={'#ffd700'}
+                      />
+                      <Card.Text className='content mw-25'>
+                        {content}
+                      </Card.Text>
+                    </Col>
+                  </Row>
                 </Card.Body>
               </Card>
-            </React.Fragment>
+            </Container>
           );
         })}
       </div>
