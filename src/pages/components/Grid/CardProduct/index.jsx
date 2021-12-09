@@ -21,7 +21,8 @@ export default function CardProduct({ id, img, title, price, category }) {
       </style>
 
       <Container className='h-100 p-0 m-0'>
-        <Card>
+      <Link className='no-style' to={`/products/product/${id}`}>
+        <Card className=''>
           <Card.Img
             src={img}
             variant='top'
@@ -36,16 +37,14 @@ export default function CardProduct({ id, img, title, price, category }) {
               {category}
             </Card.Subtitle>
             <Card.Title>
-              <Link className='no-style' to={`/products/product/${id}`}>
+              
                 {title}
-              </Link>
+              
             </Card.Title>
             <Card.Subtitle className='mb-2 text-muted'>
               BRL {price}
             </Card.Subtitle>
-          </Card.Body>
-
-          <Link className='no-style' to={`/products/product/${id}`}>
+          </Card.Body>         
             <Card.Footer className='d-flex justify-content-between bg-white'>
               <div>
                 <BsFillStarFill className='mb-1' style={{ color: 'gold' }} />
@@ -57,9 +56,9 @@ export default function CardProduct({ id, img, title, price, category }) {
                   <BsThreeDotsVertical />{' '}
                 </small>
               </div>
-            </Card.Footer>
-          </Link>
+            </Card.Footer>          
         </Card>
+        </Link>
       </Container>
     </>
   );
