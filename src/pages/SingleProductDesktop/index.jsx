@@ -53,7 +53,7 @@ function SingleProductDesktop() {
   };
 
   const arrImage = product.image ? product.image.split('|') : [];
-
+ 
   return (
     <>
       <Helmet>

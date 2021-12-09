@@ -4,3 +4,16 @@
   background-color: $color-grey-light-1;
 
 }
+
+.loading-div{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.746);
+
+}

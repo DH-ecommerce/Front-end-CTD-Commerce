@@ -5,6 +5,7 @@ import Cart from '../components/Cart';
 import { Helmet } from 'react-helmet-async';
 import './style.scss';
 import { useState, useEffect } from 'react';
+import { Spinner } from 'react-bootstrap';
 
 export default function ShoppingCart() {
   const productsLocalStorage = JSON.parse(localStorage.getItem('products'));
@@ -12,12 +13,12 @@ export default function ShoppingCart() {
   const productListReduce =
     productsLocalStorage != null
       ? productsLocalStorage.reduce(
-          (acc, { id, ...restProduct }) => ({
-            ...acc,
-            [id]: { id, ...restProduct },
-          }),
-          {}
-        )
+        (acc, { id, ...restProduct }) => ({
+          ...acc,
+          [id]: { id, ...restProduct },
+        }),
+        {}
+      )
       : [];
 
   const [cartItemsList, setCartItemsList] = useState(productListReduce);
@@ -25,19 +26,19 @@ export default function ShoppingCart() {
   const setItemCart = (product) => {
     !cartItemsList[product.id]
       ? setCartItemsList({
-          ...cartItemsList,
-          [product.id]: {
-            ...product,
-            quantity: 1,
-          },
-        })
+        ...cartItemsList,
+        [product.id]: {
+          ...product,
+          quantity: 1,
+        },
+      })
       : setCartItemsList({
-          ...cartItemsList,
-          [product.id]: {
-            ...product,
-            quantity: ++cartItemsList[product.id].quantity,
-          },
-        });
+        ...cartItemsList,
+        [product.id]: {
+          ...product,
+          quantity: ++cartItemsList[product.id].quantity,
+        },
+      });
   };
 
   const haveItemInCart = (product) => product?.quantity !== undefined;
@@ -54,12 +55,12 @@ export default function ShoppingCart() {
       itemInCartIsLOEOne(cartItemsList[productId])
         ? deleteItemAndUpdateCart(cartItemsList[productId])
         : setCartItemsList({
-            ...cartItemsList,
-            [productId]: {
-              ...cartItemsList[productId],
-              quantity: --cartItemsList[productId].quantity,
-            },
-          });
+          ...cartItemsList,
+          [productId]: {
+            ...cartItemsList[productId],
+            quantity: --cartItemsList[productId].quantity,
+          },
+        });
     }
   }
 
@@ -74,7 +75,17 @@ export default function ShoppingCart() {
     setCartItemsList({ ...cartItemsList });
   }
 
+  const Loading = () => (
+    <div className="loading-div">
+      <Spinner variant="success" animation="border" role="status">
+      </Spinner>
+    </div>
+  )
+
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
+
+    const isLoading = setTimeout(() => { setLoading(false) }, 500);
     function renderCartList() {
       setCartItemsListEffect(
         Object.values(cartItemsList).map((product, index) => (
@@ -90,17 +101,27 @@ export default function ShoppingCart() {
       );
     }
     renderCartList();
+
+    return () => {
+      clearTimeout(isLoading);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cartItemsList]);
   return (
     <>
-      <Helmet>
-        <title>NeoTech |Shopping Cart</title>
-      </Helmet>
-      <div className='shop-cart-container'>
-        <List>{cartItemsListEffect}</List>
-        <Cart items={cartItemsList} />
-      </div>
+      {loading
+        ? <Loading />
+        : <>
+          <Helmet>
+            <title>NeoTech |Shopping Cart</title>
+          </Helmet>
+          <div className='shop-cart-container'>
+            <List>{cartItemsListEffect}</List>
+            <Cart items={cartItemsList} />
+          </div>
+        </>
+      }
     </>
+
   );
 }

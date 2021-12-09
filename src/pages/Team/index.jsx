@@ -1,15 +1,21 @@
 import './style.scss';
-import React from 'react';
-import { Card, Container, Row } from 'react-bootstrap';
+import { Card, Container, Row, Spinner } from 'react-bootstrap';
 import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai';
 import { Helmet } from 'react-helmet-async';
-
+import React, { useEffect, useState } from 'react';
 import gusta from '../../assets/imgs/gusta_img_2.jpg';
 import edu from '../../assets/imgs/edu_img.jpg';
 import sophie from '../../assets/imgs/sophia_img.jpg';
 import ste from '../../assets/imgs/ste_img.jpg';
 import vitor from '../../assets/imgs/vitor_img_2.jpg';
 import nader from '../../assets/imgs/nader_img_2.jpg';
+
+const Loading = ()=>(
+  <div className="loading-div">
+    <Spinner variant="success" animation="border" role="status">
+    </Spinner>
+  </div>
+)
 
 function Team() {
   const teammates = [
@@ -57,52 +63,68 @@ function Team() {
     },
   ];
 
+  const [loading, setLoading] = useState(true);
+
+  useEffect(()=>{
+    const isLoading = setTimeout(()=>{setLoading(false)}, 500);
+
+    return ()=>{
+      clearTimeout(isLoading);
+    }
+  }, [])
+
   return (
     <>
-      <Helmet>
-        <title>NeoTech | Team</title>
-      </Helmet>
-      <Container className='d-flex flex-column align-items-center justify-content-center'>
-        <h2>Team</h2>
-        <Container className='col-md-12 col-lg-8'>
-          <Row xs={2} md={3}>
-            {teammates.map((member, idx) => (
-              <Container className='my-4' key={idx}>
-                <Card className='p-2'>
-                  <Card.Img src={member.image} style={{ maxHeight: '65vh' }} />
-                  <Card.Title className='my-2'>{member.name}</Card.Title>
-                  <Card.Text>{member.description}</Card.Text>
-                  <div className='d-flex gap-4 icon_div'>
-                    <a
-                      target='_blank'
-                      href={member.github}
-                      className='github_icon'
-                      rel='noreferrer'
-                    >
-                      <AiFillGithub
-                        size='40'
-                        style={{ color: '#0ACF83' }}
-                      ></AiFillGithub>
-                    </a>
-                    <a
-                      target='_blank'
-                      href={member.linkedin}
-                      className='linkedin_icon'
-                      rel='noreferrer'
-                    >
-                      <AiFillLinkedin
-                        size='40'
-                        style={{ color: '#0ACF83' }}
-                      ></AiFillLinkedin>
-                    </a>
-                  </div>
-                </Card>
-              </Container>
-            ))}
-          </Row>
-        </Container>
-      </Container>
+      {loading
+        ? <Loading />
+        : <>
+          <Helmet>
+            <title>NeoTech | Team</title>
+          </Helmet>
+          <Container className='d-flex flex-column align-items-center justify-content-center'>
+            <h2>Team</h2>
+            <Container className='col-md-12 col-lg-8'>
+              <Row xs={2} md={3}>
+                {teammates.map((member, idx) => (
+                  <Container className='my-4' key={idx}>
+                    <Card className='p-2'>
+                      <Card.Img src={member.image} style={{ maxHeight: '65vh' }} />
+                      <Card.Title className='my-2'>{member.name}</Card.Title>
+                      <Card.Text>{member.description}</Card.Text>
+                      <div className='d-flex gap-4 icon_div'>
+                        <a
+                          target='_blank'
+                          href={member.github}
+                          className='github_icon'
+                          rel='noreferrer'
+                        >
+                          <AiFillGithub
+                            size='40'
+                            style={{ color: '#0ACF83' }}
+                          ></AiFillGithub>
+                        </a>
+                        <a
+                          target='_blank'
+                          href={member.linkedin}
+                          className='linkedin_icon'
+                          rel='noreferrer'
+                        >
+                          <AiFillLinkedin
+                            size='40'
+                            style={{ color: '#0ACF83' }}
+                          ></AiFillLinkedin>
+                        </a>
+                      </div>
+                    </Card>
+                  </Container>
+                ))}
+              </Row>
+            </Container>
+          </Container>
+        </>
+      }
     </>
+
   );
 }
 
