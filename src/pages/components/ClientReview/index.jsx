@@ -1,12 +1,12 @@
 import array from './array';
 import React from 'react';
-import { Card, Container, Row, Col } from 'react-bootstrap';
+import { Card, Col, Container, Row } from 'react-bootstrap';
 import ReactStars from 'react-stars';
 import '../ClientReview/style.scss';
 
 export default function ClientReview() {
   return (
-    <Container className='comment' as='section'>
+    <div className='comment'>
       <p>Review ({array.length})</p>
       <div>
         {array.map(({ id, image, content, name, time }) => {
@@ -49,6 +49,6 @@ export default function ClientReview() {
           );
         })}
       </div>
-    </Container>
+    </div>
   );
 }
