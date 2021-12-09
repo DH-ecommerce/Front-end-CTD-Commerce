@@ -3,6 +3,7 @@ import 'react-multi-carousel/lib/styles.css';
 import { Container, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import imagesList from './images';
+import './style.scss'
 
 export default function CategoriesCarousel() {
   const responsive = {
@@ -33,7 +34,7 @@ export default function CategoriesCarousel() {
         <Carousel responsive={responsive} className='ms-2'>
           {imagesList.map(({ id, name, image }, idx) => {
             return (
-              <div className='me-2' key={idx}>
+              <div className='me-2 category-div' key={idx}>
                 <Link to={`/products/filter/${name}`}>
                   <Image key={id} src={image} rounded fluid />
                 </Link>

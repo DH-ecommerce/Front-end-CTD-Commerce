@@ -54,11 +54,7 @@ export default function Cart({ items}) {
           font-weight: 700;
           line-height: 20px;
           letter-spacing: 0.20000000298023224px;
-          text-align: left;
-          display: flex;
-          justify-content: space-around;
-          margin: 1rem 0 3rem;
-        
+          text-align: center;        
         }
 
 

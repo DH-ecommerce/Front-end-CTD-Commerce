@@ -6,9 +6,9 @@ import '../ClientReview/style.scss';
 
 export default function ClientReview() {
   return (
-    <div className='comment'>
-      <p>Review ({array.length})</p>
-      <div>
+    <Container>
+      <h6 className="ms-3 mb-4">Reviews ({array.length})</h6>
+      <div>      
         {array.map(({ id, image, content, name, time }) => {
           return (
             <Container key={id}>
@@ -33,7 +33,7 @@ export default function ClientReview() {
                       <Card.Title className='name'>{name}</Card.Title>
                       <Card.Text className='time'>{time}</Card.Text>
                       <ReactStars
-                        className='star'
+                        className='star mb-2'
                         count={5}
                         size={20}
                         color2={'#ffd700'}
@@ -49,6 +49,6 @@ export default function ClientReview() {
           );
         })}
       </div>
-    </div>
+    </Container>
   );
 }
