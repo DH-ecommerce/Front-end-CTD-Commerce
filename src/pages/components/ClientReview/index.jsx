@@ -15,20 +15,21 @@ export default function ClientReview() {
               <Card
                 style={{
                   border: 'transparent',
-                  maxHeight: '40vh',
-                  minHeight: '40vh',
+                  height: '100%',
+                  minHeight: '100%',
                 }}
                 className='mb-5 p-2'
               >
                 <Card.Body className='user_div'>
                   <Row>
-                    <Col>
+                    <Col lg={2} sm={2} xs={3}>
                       <Card.Img
-                        style={{ maxWidth: '8vw', minWidth: '120px' }}
+                        sm={2}
+                        style={{ maxWidth: '8vw', minWidth: '50px' }}
                         src={image}
                       />
                     </Col>
-                    <Col lg={10} sm={8} xs={5}>
+                    <Col lg={10} sm={10} xs={9}>
                       <Card.Title className='name'>{name}</Card.Title>
                       <Card.Text className='time'>{time}</Card.Text>
                       <ReactStars
@@ -37,7 +38,7 @@ export default function ClientReview() {
                         size={20}
                         color2={'#ffd700'}
                       />
-                      <Card.Text className='content mw-25 text-style'>
+                      <Card.Text className='content mw-25'>
                         {content}
                       </Card.Text>
                     </Col>
