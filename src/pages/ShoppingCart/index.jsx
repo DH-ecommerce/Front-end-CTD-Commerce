@@ -39,6 +39,19 @@ export default function ShoppingCart() {
           quantity: ++cartItemsList[product.id].quantity,
         },
       });
+      let productsLocalStorage = JSON.parse(localStorage.getItem('products'));
+      productsLocalStorage.push(product);
+      localStorage.setItem('products', JSON.stringify(productsLocalStorage));
+      let quantityLocalStorage = localStorage.getItem('quantityProducts');
+
+      if (quantityLocalStorage == null) {
+        quantityLocalStorage = [];
+        localStorage.setItem('quantityProducts', JSON.stringify(quantityLocalStorage));
+      } else {
+        quantityLocalStorage = JSON.parse(localStorage.getItem('quantityProducts'));
+      }
+      quantityLocalStorage.push(1)
+      localStorage.setItem('quantityProducts', JSON.stringify(quantityLocalStorage));
   };
 
   const haveItemInCart = (product) => product?.quantity !== undefined;
@@ -62,17 +75,41 @@ export default function ShoppingCart() {
           },
         });
     }
+    let productsLocalStorage = JSON.parse(localStorage.getItem('products'));
+    let arrIndex = productsLocalStorage.reduceRight((acc, crr, i)=>{
+        if(crr.id === productId){
+          acc.push(i)
+        }
+        return acc;
+      }, [])
+    productsLocalStorage.splice(arrIndex[0], 1);
+    localStorage.setItem('products', JSON.stringify(productsLocalStorage));
+
+    const quantityLocalStorage = JSON.parse(localStorage.getItem('quantityProducts'));
+    quantityLocalStorage.pop()
+    localStorage.setItem('quantityProducts', JSON.stringify(quantityLocalStorage)); 
+   
   }
 
   const [cartItemsListEffect, setCartItemsListEffect] = useState();
 
   function deleteItem(product) {
+    
+    const quantityLocalStorage = JSON.parse(localStorage.getItem('quantityProducts'));
+
+    for(let i = 0; i <= cartItemsList[product.id].quantity; i++){
+      quantityLocalStorage.pop()
+      localStorage.setItem('quantityProducts', JSON.stringify(quantityLocalStorage));
+    }
+
     delete cartItemsList[product.id];
     localStorage.setItem(
       'products',
       JSON.stringify(productsLocalStorage.filter((p) => p.id !== product.id))
     );
+    
     setCartItemsList({ ...cartItemsList });
+    
   }
 
   const Loading = () => (

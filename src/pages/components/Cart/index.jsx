@@ -1,6 +1,6 @@
 import './style.scss';
 import { Row, Col, Button } from 'react-bootstrap';
-
+import Swal from 'sweetalert2';
 
 const totalPrice = (cartItems) =>
     Object.keys(cartItems).reduce(
@@ -16,7 +16,13 @@ const totalQuantity = (cartItems) =>
       0
     )
 
-
+const onCheckout = () => Swal.fire({
+  position: 'top',
+  icon: 'success',
+  title: 'Completed purchase',
+  showConfirmButton: false,
+  timer: 1500
+})
 
 export default function Cart({ items}) {
 
@@ -64,8 +70,8 @@ export default function Cart({ items}) {
 
         `}
       </style>
-      <Button className="btn-checkout" variant="primary">
-        <span> Proceed to Checkout </span>
+      <Button onClick={onCheckout} className="btn-checkout" variant="primary">
+        <span> Checkout </span>
         <span>  </span>
       </Button>
       </Col>

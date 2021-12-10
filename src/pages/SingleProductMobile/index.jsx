@@ -7,10 +7,20 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import api from '../../services/api';
 import './style.scss';
+import { Spinner } from 'react-bootstrap';
+import ClientReview from '../components/ClientReview';
+import Swal from 'sweetalert2';
+
+const Loading = ()=>(
+  <div className="loading-div">
+    <Spinner variant="success" animation="border" role="status">
+    </Spinner>
+  </div>
+)
 
 function SingleProduct() {
-  const [product, setProduct] = useState({});
-
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
   const { singleProduct } = useParams();
 
   useEffect(() => {
@@ -34,6 +44,12 @@ function SingleProduct() {
     loadProductData();
   }, [singleProduct]);
 
+  useEffect(()=>{
+    if(product){
+      setLoading(false)
+    }
+  }, [product])
+
   let productsLocalStorage = localStorage.getItem('products');
 
   if (productsLocalStorage == null) {
@@ -43,9 +59,41 @@ function SingleProduct() {
     productsLocalStorage = JSON.parse(localStorage.getItem('products'));
   }
 
+  let quantityLocalStorage = localStorage.getItem('quantityProducts');
+
+  if (quantityLocalStorage == null) {
+    quantityLocalStorage = [];
+    localStorage.setItem('quantityProducts', JSON.stringify(quantityLocalStorage));
+  } else {
+    quantityLocalStorage = JSON.parse(localStorage.getItem('quantityProducts'));
+  }
+
+
+
   const addProductToLocalStorage = () => {
     productsLocalStorage.push(product);
+    quantityLocalStorage.push(1)
+    localStorage.setItem('quantityProducts', JSON.stringify(quantityLocalStorage));
     localStorage.setItem('products', JSON.stringify(productsLocalStorage));
+
+    Swal.fire({
+      title: '<strong>Product added to shopping cart</strong>',
+      icon: 'success',
+      showCloseButton: true,
+      showDenyButton: true,
+      focusConfirm: false,
+      confirmButtonColor: '#3085d6',
+      confirmButtonText:
+        "<i>Go to shopping cart</i>",
+      denyButtonText:
+        "<i>Keep buying</i>",
+    }).then((result)=>{
+      if (result.isConfirmed) {
+        window.location.href = '/shoppingCart'; 
+      } else if (result.isDenied) {
+        window.location.href = '/products/filter/all'; 
+      }
+    })
   };
 
   const responsive = {
@@ -59,10 +107,13 @@ function SingleProduct() {
     },
   };
 
-  const arrImage = product.image ? product.image.split('|') : [];
+  const arrImage = product?.image ? product?.image.split('|') : [];
 
   return (
-    <>
+    <> 
+    {loading 
+     ? <Loading/>
+     : <>
       <Helmet>
         <title>{`NeoTech  | ${product?.title ? product.title : ''}`}</title>
       </Helmet>
@@ -112,7 +163,10 @@ function SingleProduct() {
           </Link>
         </Container>
       </Container>
-    </>
+      <ClientReview/>
+      </>
+     }
+   </>
   );
 }
 
