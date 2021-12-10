@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState, useContext } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Button, Container, Image, Tabs, Tab } from 'react-bootstrap';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -10,6 +10,7 @@ import './style.scss';
 import { Spinner } from 'react-bootstrap';
 import ClientReview from '../components/ClientReview';
 import Swal from 'sweetalert2';
+import { ItemsContext } from '../../hooks/ItemsProvider/ItemsProvider';
 
 const Loading = ()=>(
   <div className="loading-div">
@@ -19,6 +20,9 @@ const Loading = ()=>(
 )
 
 function SingleProductMobile() {
+  const { setItemCart } = useContext(ItemsContext)
+
+  const navigate = useNavigate();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const { singleProduct } = useParams();
@@ -59,21 +63,12 @@ function SingleProductMobile() {
     productsLocalStorage = JSON.parse(localStorage.getItem('products'));
   }
 
-  let quantityLocalStorage = localStorage.getItem('quantityProducts');
-
-  if (quantityLocalStorage == null) {
-    quantityLocalStorage = [];
-    localStorage.setItem('quantityProducts', JSON.stringify(quantityLocalStorage));
-  } else {
-    quantityLocalStorage = JSON.parse(localStorage.getItem('quantityProducts'));
-  }
-
-
+ 
 
   const addProductToLocalStorage = () => {
+    setItemCart(product)
+    productsLocalStorage = JSON.parse(localStorage.getItem('products'));
     productsLocalStorage.push(product);
-    quantityLocalStorage.push(1)
-    localStorage.setItem('quantityProducts', JSON.stringify(quantityLocalStorage));
     localStorage.setItem('products', JSON.stringify(productsLocalStorage));
 
     Swal.fire({
@@ -82,16 +77,17 @@ function SingleProductMobile() {
       showCloseButton: true,
       showDenyButton: true,
       focusConfirm: false,
-      confirmButtonColor: '#3085d6',
+      confirmButtonColor: '#0ACF83',
+      denyButtonColor: '#FFC120',
       confirmButtonText:
         "<i>Go to shopping cart</i>",
       denyButtonText:
         "<i>Keep buying</i>",
     }).then((result)=>{
       if (result.isConfirmed) {
-        window.location.href = '/shoppingCart'; 
+        navigate('/shoppingCart')
       } else if (result.isDenied) {
-        window.location.href = '/products/filter/all'; 
+        navigate('/products/filter/all')
       }
     })
   };
@@ -120,7 +116,6 @@ function SingleProductMobile() {
       <Container className='container-single-product'>
         <h5 className='single-product-category mb-2'>{product.category}</h5>
         <h1 className='single-product-title mb-5'>{product.title}</h1>
-
         <Container className='container-tabs'>
           <Tabs defaultActiveKey='overview' className='mb-3'>
             <Tab eventKey='overview' title='Overview'>

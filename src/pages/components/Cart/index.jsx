@@ -1,7 +1,7 @@
 import './style.scss';
 import { Row, Col, Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
-import { ItemsContext } from '../ItemsProvider/ItemsProvider';
+import { ItemsContext } from '../../../hooks/ItemsProvider/ItemsProvider';
 import {useContext} from 'react'
 
 const totalPrice = (cartItems) =>

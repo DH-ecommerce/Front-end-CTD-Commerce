@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { Container, Image } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import cavalinho from '../../assets/imgs/404_error.png'
 
 

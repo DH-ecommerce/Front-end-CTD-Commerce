@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useEffect, useState, useContext } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Container, Col, Row, Button, Image } from 'react-bootstrap';
 import { Helmet } from 'react-helmet-async';
 import './style.scss';
@@ -8,6 +8,8 @@ import ImageMagnifier from '../components/ImageMagnifier';
 import api from '../../services/api';
 import { Spinner } from 'react-bootstrap';
 import ClientReview from '../components/ClientReview';
+import { ItemsContext } from '../../hooks/ItemsProvider/ItemsProvider';
+
 const Loading = ()=>(
   <div className="loading-div">
     <Spinner className="spinner" variant="success" animation="border" role="status">
@@ -17,6 +19,9 @@ const Loading = ()=>(
 
 function SingleProductDesktop() {
 
+  const {setItemCart} = useContext(ItemsContext)
+
+  const navigate = useNavigate();
   const [product, setProduct] = useState(null);
   const [currentImage, setCurrentImage] = useState([]);
 
@@ -66,19 +71,13 @@ function SingleProductDesktop() {
     productsLocalStorage = JSON.parse(localStorage.getItem('products'));
   }
 
-  let quantityLocalStorage = localStorage.getItem('quantityProducts');
-
-  if (quantityLocalStorage == null) {
-    quantityLocalStorage = [];
-    localStorage.setItem('quantityProducts', JSON.stringify(quantityLocalStorage));
-  } else {
-    quantityLocalStorage = JSON.parse(localStorage.getItem('quantityProducts'));
-  }
+  
 
   const addProductToLocalStorage = () => {
+    setItemCart(product)
+    productsLocalStorage = JSON.parse(localStorage.getItem('products'));
     productsLocalStorage.push(product);
-    quantityLocalStorage.push(1)
-    localStorage.setItem('quantityProducts', JSON.stringify(quantityLocalStorage));
+
     localStorage.setItem('products', JSON.stringify(productsLocalStorage));
     Swal.fire({
       title: '<strong>Product added to shopping cart</strong>',
@@ -86,21 +85,19 @@ function SingleProductDesktop() {
       showCloseButton: true,
       showDenyButton: true,
       focusConfirm: false,
-      confirmButtonColor: '#3085d6',
+      confirmButtonColor: '#0ACF83',
+      denyButtonColor: '#FFC120',
       confirmButtonText:
         "<i>Go to shopping cart</i>",
       denyButtonText:
         "<i>Keep buying</i>",
     }).then((result)=>{
       if (result.isConfirmed) {
-        window.location.href = '/shoppingCart'; 
+        navigate('/shoppingCart')
       } else if (result.isDenied) {
-        window.location.href = '/products/filter/all'; 
+        navigate('/products/filter/all')
       }
     })
-    // window.location.href = '/shoppingCart'; 
-    // <Link to={`/shoppingCart`} style={{ textDecoration: 'none' }}></Link>
-    
   };
 
   const arrImage = product?.image ? product?.image.split('|') : [];
@@ -185,7 +182,6 @@ function SingleProductDesktop() {
              </Col>
              <Row>
                <Col className='align-self-end'>
-                 {/* <Link to={`/shoppingCart`} style={{ textDecoration: 'none' }}> */}
                    <Button
                      variant='primary'
                      className='px-5 w-100 m-0'
@@ -193,7 +189,6 @@ function SingleProductDesktop() {
                    >
                      Add to Cart
                    </Button>
-                 {/* </Link> */}
                </Col>
              </Row>
            </Col>

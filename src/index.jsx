@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
-import ItemsProvider from './pages/components/ItemsProvider/ItemsProvider';
+import ItemsProvider from './hooks/ItemsProvider/ItemsProvider';
 
 
 ReactDOM.render(

@@ -1,7 +1,6 @@
 import React from 'react';
-import CardCart from '../CardCart'
+import CardCart from '../../pages/components/CardCart';
 import { useState, useEffect, createContext } from 'react';
-import { Spinner } from 'react-bootstrap';
 
 export const ItemsContext = createContext({});
 
@@ -40,16 +39,6 @@ export default function ItemsProvider({children}) {
       let productsLocalStorage = JSON.parse(localStorage.getItem('products'));
       productsLocalStorage.push(product);
       localStorage.setItem('products', JSON.stringify(productsLocalStorage));
-      let quantityLocalStorage = localStorage.getItem('quantityProducts');
-
-      if (quantityLocalStorage == null) {
-        quantityLocalStorage = [];
-        localStorage.setItem('quantityProducts', JSON.stringify(quantityLocalStorage));
-      } else {
-        quantityLocalStorage = JSON.parse(localStorage.getItem('quantityProducts'));
-      }
-      quantityLocalStorage.push(1)
-      localStorage.setItem('quantityProducts', JSON.stringify(quantityLocalStorage));
   };
 
   const haveItemInCart = (product) => product?.quantity !== undefined;
@@ -83,10 +72,6 @@ export default function ItemsProvider({children}) {
       }, [])
     productsLocalStorage.splice(arrIndex[0], 1);
     localStorage.setItem('products', JSON.stringify(productsLocalStorage));
-
-    const quantityLocalStorage = JSON.parse(localStorage.getItem('quantityProducts'));
-    quantityLocalStorage.pop()
-    localStorage.setItem('quantityProducts', JSON.stringify(quantityLocalStorage)); 
    
   }
 
@@ -94,13 +79,6 @@ export default function ItemsProvider({children}) {
 
   function deleteItem(product) {
     
-    const quantityLocalStorage = JSON.parse(localStorage.getItem('quantityProducts'));
-
-    for(let i = 0; i <= cartItemsList[product.id].quantity; i++){
-      quantityLocalStorage.pop()
-      localStorage.setItem('quantityProducts', JSON.stringify(quantityLocalStorage));
-    }
-
     delete cartItemsList[product.id];
     localStorage.setItem(
       'products',
@@ -111,17 +89,9 @@ export default function ItemsProvider({children}) {
     
   }
 
-  const Loading = () => (
-    <div className="loading-div">
-      <Spinner variant="success" animation="border" role="status">
-      </Spinner>
-    </div>
-  )
 
-  const [loading, setLoading] = useState(true);
   useEffect(() => {
 
-    const isLoading = setTimeout(() => { setLoading(false) }, 500);
     function renderCartList() {
       setCartItemsListEffect(
         Object.values(cartItemsList).map((product, index) => (
@@ -133,18 +103,14 @@ export default function ItemsProvider({children}) {
             items={cartItemsList}
             onDeleteItem={deleteItem}
           />
-        ))
+        )) || []
       );
     }
     renderCartList();
-
-    return () => {
-      clearTimeout(isLoading);
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cartItemsList]);
   return (
-      <ItemsContext.Provider value={{cartItemsListEffect, cartItemsList}}>
+      <ItemsContext.Provider value={{setCartItemsListEffect, cartItemsListEffect, cartItemsList, setItemCart, deleteItem, removeItemCart, deleteItemAndUpdateCart}}>
            {children}
       </ItemsContext.Provider>
   );
