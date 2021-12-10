@@ -8,7 +8,8 @@ const perfil_array = [{
     image: person5,
     name: "Gustav",
     content: "The product exceeded my expectations. Reponse well and has suport for my computer.", 
-    time: "3 days"
+    time: "3 days",
+    stars: 4,
 },
 
 {
@@ -16,21 +17,24 @@ const perfil_array = [{
     image: person3,
     name: "Susan",
     content: "Great sales support and quick response. Good experience, I definitely will buy again in NeoTech!", 
-    time: "1 month"
+    time: "1 month",
+    stars: 4.5,
 },
 {
     id: 3,
     image: person2,
     name: "John Paul",
     content: "Excellent product. The delivery was fast.", 
-    time: "1 month"
+    time: "1 month",
+    stars: 4,
 },
 {
     id: 4,
     image: perfil,
     name: "Adam",
     content: "I love the design and the structure. Its perfect for my gadgets.", 
-    time: "2 month"
+    time: "2 month",
+    stars: 5,
 }
 ]
 

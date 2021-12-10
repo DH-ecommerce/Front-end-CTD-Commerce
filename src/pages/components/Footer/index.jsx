@@ -6,7 +6,7 @@ import './style.scss';
 
 export default function Footer({ company }) {
   const generateDateString = () => {
-    const creationYear = '2020';
+    const creationYear = '2021';
     const currentYear = `${new Date().getFullYear()}`;
     return creationYear === currentYear
       ? currentYear

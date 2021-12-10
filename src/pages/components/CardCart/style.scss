@@ -11,16 +11,22 @@
   max-width: 555px;
   height: 109px;
   max-height: 194px;
-  @media screen and (max-width: 374px) {
-    padding: 5rem;
-
-    }
+  @media screen and (max-width: 600px) {
+    padding: 5rem 1rem;
+  }
+  
+  @media screen and (max-width: 375px) {
+        padding: 5rem 1rem;
+  }
+  
 
   .card_image{
     width: 67px;
     height: 67px;
     padding: 10px;
     margin: 0px 10px;
+
+    
   }
   .card_body{
     padding: .5rem;
@@ -37,7 +43,7 @@
       line-height: 21px;
       letter-spacing: 0.20000000298023224px;
       text-align: left;
-      @media screen and (max-width: 330px){
+      @media screen and (max-width: 1024px){
         white-space: pre-wrap;
         word-wrap: break-word;
       }

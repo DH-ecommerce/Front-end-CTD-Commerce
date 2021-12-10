@@ -16,12 +16,17 @@ export default function ShoppingCart() {
           </Helmet>
           <div className='shop-cart-container'>
             {(cartItemsListEffect !== undefined && cartItemsListEffect.length === 0)
-            ? (<div className="cart-empty-div d-flex justify-content-center align-items-center flex-column">
+            ? (<div className="cart-empty-div">
                 <p className="cart-empty-p">The shopping cart is empty.</p>
               </div>)
-            : <List/> 
+            : (
+              <>
+                <List/> 
+                <Cart/>
+              </>
+            )
             }
-            <Cart/>
+
           </div>
         </>
   );

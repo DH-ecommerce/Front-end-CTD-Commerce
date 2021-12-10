@@ -9,7 +9,7 @@ import { Helmet } from 'react-helmet-async';
 
 const Loading = ()=>(
   <div className="loading-div">
-    <Spinner variant="success" animation="border" role="status">
+    <Spinner className="spinner" variant="success" animation="border" role="status">
     </Spinner>
   </div>
 )

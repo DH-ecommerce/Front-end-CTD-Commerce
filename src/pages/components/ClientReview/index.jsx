@@ -9,7 +9,7 @@ export default function ClientReview() {
     <Container>
       <h6 className="ms-3 mb-4">Reviews ({array.length})</h6>
       <div>      
-        {array.map(({ id, image, content, name, time }) => {
+        {array.map(({ id, image, content, name, time, stars }) => {
           return (
             <Container key={id}>
               <Card
@@ -37,6 +37,8 @@ export default function ClientReview() {
                         count={5}
                         size={20}
                         color2={'#ffd700'}
+                        value={stars}
+                        edit={false}
                       />
                       <Card.Text className='content mw-25'>
                         {content}

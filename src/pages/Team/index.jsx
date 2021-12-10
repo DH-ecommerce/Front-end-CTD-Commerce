@@ -12,7 +12,7 @@ import nader from '../../assets/imgs/nader_img_2.jpg';
 
 const Loading = ()=>(
   <div className="loading-div">
-    <Spinner variant="success" animation="border" role="status">
+    <Spinner className="spinner" variant="success" animation="border" role="status">
     </Spinner>
   </div>
 )

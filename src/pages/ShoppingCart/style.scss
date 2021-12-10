@@ -5,8 +5,20 @@
 
 }
 .cart-empty-div{
-  height: 40vh;
-
+  height: 57vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @media screen and (min-width: 375px){
+    height: 63vh;
+  }
+  @media screen and (min-width: 768px){
+    height: 76vh;
+  }
+  @media screen and (min-width: 1024px){
+    height: 66vh;
+  }
   .cart-empty-p{
     font-size: 1.3rem;
     color: $primary-color;
@@ -14,3 +26,5 @@
     text-align: center;
   }
 }
+
+

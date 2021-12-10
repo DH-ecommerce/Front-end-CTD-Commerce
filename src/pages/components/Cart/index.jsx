@@ -61,10 +61,12 @@ export default function Cart() {
           font-weight: 700;
           line-height: 20px;
           letter-spacing: 0.20000000298023224px;
-          text-align: center;        
+          text-align: center;
+                  
         }
-
-
+        .btn-primary:focus {
+          background-color: #0ACF83;
+        }
         `}
       </style>
       <Button onClick={onCheckout} className="btn-checkout" variant="primary">
