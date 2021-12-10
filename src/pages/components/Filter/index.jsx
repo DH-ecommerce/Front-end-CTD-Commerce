@@ -33,7 +33,7 @@ const Filter = ({ parentCallback }) => {
   return (
     <>
       <Container>
-        <Container className='container-filter m-0 d-flex'>
+        <Container className='m-0 d-flex flex-wrap'>
           <Accordion>
             <Accordion.Header style={{ backgroundColor: 'transparent' }}>
               <Row className='d-flex align-items-center filter-button p-2'>
@@ -51,7 +51,7 @@ const Filter = ({ parentCallback }) => {
                 <ToggleButtonGroup
                   type='radio'
                   name='categories'
-                  className='d-flex gap-3'
+                  className='d-flex flex-wrap gap-3'
                 >
                   {radiosCategory.map((radio, idx) => (
                     <Fragment key={idx}>

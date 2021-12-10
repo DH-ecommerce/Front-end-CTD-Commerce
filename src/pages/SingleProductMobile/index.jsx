@@ -18,7 +18,7 @@ const Loading = ()=>(
   </div>
 )
 
-function SingleProduct() {
+function SingleProductMobile() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const { singleProduct } = useParams();
@@ -120,7 +120,6 @@ function SingleProduct() {
       <Container className='container-single-product'>
         <h5 className='single-product-category mb-2'>{product.category}</h5>
         <h1 className='single-product-title mb-5'>{product.title}</h1>
-        <h4 className='single-product-title mb-2'>BRL {product.price}</h4>
 
         <Container className='container-tabs'>
           <Tabs defaultActiveKey='overview' className='mb-3'>
@@ -156,6 +155,7 @@ function SingleProduct() {
           </Tabs>
         </Container>
         <Container className='container-add-to-cart'>
+        <h4 className='single-product-title mt-5'>BRL {product.price}</h4>
           <Link style={{ textDecoration: 'none' }} to={`/shoppingCart`}>
             <Button variant='primary' onClick={addProductToLocalStorage}>
               Add to Cart
@@ -172,4 +172,4 @@ function SingleProduct() {
 
 
 
-export default SingleProduct;
+export default SingleProductMobile;
