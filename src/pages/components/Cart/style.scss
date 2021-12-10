@@ -5,6 +5,7 @@
   width: 90%;
   margin: auto;
   max-width: 555px;
+  margin-bottom: 13.5rem;
 }
 
 .total-quantity-h6{
@@ -28,6 +29,11 @@
   text-align: right;
   
 }
+
+.cart__total .btn-primary{
+  display: block;
+}
+
 .btn-col{
   padding: 0 !important;
 }

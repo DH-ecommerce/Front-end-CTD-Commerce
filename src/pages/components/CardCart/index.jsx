@@ -1,5 +1,5 @@
 import './style.scss';
-import { Col, Card, Button } from 'react-bootstrap';
+import { Col, Card } from 'react-bootstrap';
 import React from 'react';
 import bin from '../../../assets/imgs/delete_outline_black_24dp.svg';
 import add from '../../../assets/imgs/add_black_24dp.svg';
@@ -12,13 +12,13 @@ export default function CardCart({
   onRemoveItemCart,
   onDeleteItem,
 }) {
-
-  const teste = { ...items,
-          [product.id]: {
-            ...product,
-            quantity: 1,
-          }
-  }
+  const teste = {
+    ...items,
+    [product.id]: {
+      ...product,
+      quantity: 1,
+    },
+  };
 
   return (
     <Col sm={12}>
@@ -26,18 +26,31 @@ export default function CardCart({
         <Card.Img className='card_image' variant='top' src={product.image} />
         <Card.Body className='card_body'>
           <Card.Title className='card_title'>{product.title}</Card.Title>
-          <Card.Text className='card_text'>USD {product.price}</Card.Text>
+          <Card.Text className='card_text'>BRL {product.price}</Card.Text>
           <div className='btns-card-cart-div'>
             <div className='btn-quantity'>
-              <button className="btns-quantity" onClick={onRemoveItemCart.bind(null, product.id)}>
+              <button
+                className='btns-quantity'
+                onClick={onRemoveItemCart.bind(null, product.id)}
+              >
                 <img src={remove} alt='' />
               </button>
-              <p className='quantity-p'>{items[product.id]?.quantity || teste[product.id].quantity}</p>
-              <button className="btns-quantity" onClick={onAddItemCart.bind(null, product)}>
+              <p className='quantity-p'>
+                {items[product.id]?.quantity || teste[product.id].quantity}
+              </p>
+              <button
+                className='btns-quantity'
+                onClick={onAddItemCart.bind(null, product)}
+              >
                 <img src={add} alt='' />
               </button>
             </div>
-            <button className="bin-btn" onClick={onDeleteItem.bind(null, product)}><img  className="bin-image" src={bin} alt='' /></button>
+            <button
+              className='bin-btn'
+              onClick={onDeleteItem.bind(null, product)}
+            >
+              <img className='bin-image' src={bin} alt='' />
+            </button>
           </div>
         </Card.Body>
       </Card>

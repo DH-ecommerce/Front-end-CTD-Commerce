@@ -4,3 +4,13 @@
   background-color: $color-grey-light-1;
 
 }
+.cart-empty-div{
+  height: 40vh;
+
+  .cart-empty-p{
+    font-size: 1.3rem;
+    color: $primary-color;
+    font-weight: bold;
+    text-align: center;
+  }
+}

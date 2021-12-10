@@ -12,7 +12,7 @@ export default function ImageMagnifier({
   const [[imgWidth, imgHeight], setSize] = useState([0, 0]);
   const [showMagnifier, setShowMagnifier] = useState(false);
   return (
-    <div
+    <div 
       style={{
         position: 'relative',
         height: height,
@@ -21,7 +21,7 @@ export default function ImageMagnifier({
     >
       <img
         src={src}
-        style={{ height: height, width: width }}
+        style={{ height: height, width: width, maxWidth: "100%" }}
         onMouseEnter={(e) => {
           // update image size and turn-on magnifier
           const elem = e.currentTarget;

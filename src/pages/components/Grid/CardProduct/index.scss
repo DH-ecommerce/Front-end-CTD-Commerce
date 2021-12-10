@@ -1,11 +1,15 @@
+@import '../../../../utilities.scss';
 
-.card{
-border-radius: 15px;
+.card-product{
+border-radius: 0.5rem;
 border-color: transparent;
+    &:hover{
+        box-shadow: 0 .5rem 1rem rgba(black, .15);
+}
 }
 
 .card img{
-    border-radius: 15px;
+    border-radius: 0.5rem;
 }
 
 .d-flex{
@@ -21,5 +25,5 @@ border-color: transparent;
     } 
 
 .category-subtitle{
-color:  #0cb876 !important;
+color: $primary-color !important;
     }

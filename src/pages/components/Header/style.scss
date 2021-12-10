@@ -1,3 +1,10 @@
+@import '../../../utilities.scss';
+
+.nav-bg{
+  background-color: #fff;
+  padding: 2rem;
+}
+
 .navbar-nav ul li,
 #basic-navbar-nav ul li {
   cursor: pointer;
@@ -10,6 +17,21 @@
   grid-template-columns: 1fr 1fr 1fr;
 }
 
+.cart-image-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  .count-items-cart{
+    font-size: 12px;
+    font-weight: bold;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 2px solid $primary-color;
+    border-radius: 50%;
+    text-align: center;
+  }
+}
 .gridItem {
   order: 3;
   @media (max-width: 991.98px) {
