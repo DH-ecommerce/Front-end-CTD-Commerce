@@ -16,10 +16,16 @@ const NotFound = () => {
       <Helmet>
         <title>Not Found</title>
       </Helmet>
-      <Container className='d-flex flex-column justify-content-center align-itens-center'>
-        <h2>404 page not found</h2>
+      <Container className='d-flex flex-column justify-content-center align-itens-center '>
+        <h2 className="text-not-found text-center">404 page not found</h2>
 
-        <img src={cavalinho} alt="cavalinho" />
+        <img src={cavalinho} alt="cavalinho" className='img-not-found'
+                      
+                      variant='top'
+                      style={{
+                        maxHeight: '60vh',
+                        objectFit: 'contain',
+                                              }} />
         
       </Container>
 
