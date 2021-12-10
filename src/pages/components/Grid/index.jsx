@@ -1,4 +1,3 @@
-import './index.scss';
 import api from '../../../services/api';
 import CardProduct from './CardProduct';
 import Filter from '../Filter';

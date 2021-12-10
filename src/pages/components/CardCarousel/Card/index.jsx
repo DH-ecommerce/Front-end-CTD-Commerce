@@ -7,7 +7,7 @@ export default function OneCard({ image, title, price, category }) {
   return (
     <>
     <Container className='h-100 p-0 m-0'>
-    <Card>
+    <Card className='card-product'>
         {<Card.Img src={image} variant='top'
             style={{
               maxHeight: '20vh',

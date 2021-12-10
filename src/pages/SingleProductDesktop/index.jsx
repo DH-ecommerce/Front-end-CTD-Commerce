@@ -35,7 +35,7 @@ function SingleProductDesktop() {
   }, [singleProduct]);
 
   const handleClick = (e) => {
-    setCurrentImage(e.currentTarget.src);
+    setCurrentImage((e.currentTarget.firstChild).firstChild.src);
   };
 
   let productsLocalStorage = localStorage.getItem('products');
@@ -66,7 +66,6 @@ function SingleProductDesktop() {
               <Button
                 variant='outline-success'
                 className='button-back'
-                style={{}}
               >
                 {`< Back`}
               </Button>
@@ -82,29 +81,33 @@ function SingleProductDesktop() {
               {arrImage.length !== 0 &&
                 arrImage.map((image, idx) => {
                   return (
-                    <Row className='my-3' key={idx}>
+                    <Container className='container-img hover-style my-2' fluid onClick={(e) => handleClick(e)}>
+                      <Row className='my-3' key={idx} >
                       <Image
-                        onClick={(e) => handleClick(e)}
-                        className='hover-style'
+                      className='p-0'
                         src={image}
                         alt=''
-                        style={{ maxHeight: '12vh', objectFit: 'contain' }}
+                        style={{maxHeight:"10vh",objectFit:'contain' }}
                       />
                     </Row>
+                    </Container>                    
                   );
                 })}
             </Col>
             <Col md={6} className='mx-0 px-0 d-flex justify-content-center'>
               {currentImage.length !== 0 && (
-                <ImageMagnifier
+                <Container className='container-main-img p-0 d-flex align-items-center justify-content-center'>
+                  <ImageMagnifier 
+                  height={"20rem"}
                   src={currentImage}
-                  height={'50vh'}
                   className='zoom'
                   style={{
-                    objectFit: 'scale-down',
-                    alignSelf: 'center',
+                    objectFit: 'contain',
+                    maxWidth: '100%'
                   }}
                 />
+                </Container>
+                
               )}
             </Col>
             <Col className='d-grid'>
@@ -127,7 +130,7 @@ function SingleProductDesktop() {
               </Container>
 
               <Col className='align-self-end mt-5'>
-                <h4>BRL {product.price}</h4>
+                <h4 className='mb-5'>BRL {product.price}</h4>
               </Col>
               <Row>
                 <Col className='align-self-end'>

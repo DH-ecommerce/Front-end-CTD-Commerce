@@ -13,7 +13,7 @@ export default function Footer({ company }) {
       : `${creationYear} - ${currentYear}`;
   };
   return (
-    <Container className='my-5 text-center'  as='footer'>
+    <Container className='text-center footer pb-4 mt-4' fluid as='footer'>
       <Col md={{ span: 6, offset: 3 }} sm={{ span: 10, offset: 1 }}>
         <ListGroup as='ul' horizontal className='justify-content-center' >
           <ListGroup.Item as='li' className='nav-item'>
@@ -33,7 +33,7 @@ export default function Footer({ company }) {
           </ListGroup.Item>
         </ListGroup>
       </Col>
-      <p className='text-center text-muted'>
+      <p className='text-center text-muted my-0'>
         <img src={logo} alt='logo' style={{ width: '20px' }} /> {company} &copy;
         Copyright {generateDateString()}
       </p>

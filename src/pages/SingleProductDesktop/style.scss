@@ -1,3 +1,19 @@
+@import "../../utilities.scss";
+
+.container-img{
+  background-color: #fff;
+  height: auto;
+  width: 6vw;
+  padding: 0.5rem 2.5rem;
+  border-radius: 0.25rem;
+}
+
+.container-main-img{
+  background-color: #fff !important;
+  border-radius: 0.25rem;
+  margin-right: 4rem;
+}
+
 .hover-style {
   cursor: pointer;
   transform: scale(0.9);
@@ -18,8 +34,9 @@
   border: none;
   width: 10vw;
   text-align: start;
+  color: $primary-color !important;
   &:hover {
     background-color: transparent;
-    color: #0acf83;
+    color: #07a86a !important;
   }
 }

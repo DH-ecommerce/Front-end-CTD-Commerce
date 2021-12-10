@@ -34,7 +34,7 @@ export default function Cart({ items}) {
       </Col>
       <Col xs={6}>
         <h6 className='total-price-h6'>
-          <strong>USD {totalPrice(items).toFixed(2)}</strong>
+          <strong>BRL {totalPrice(items).toFixed(2)}</strong>
         </h6>
       </Col>
       <Col className="btn-col" xs={{span: 10, offset: 1 }} md={{span: 7, offset: 5}}>

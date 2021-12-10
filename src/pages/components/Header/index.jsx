@@ -8,7 +8,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 export default function Header() {
   return (
     <>
-      <Navbar expand='lg' className='my-3'>
+      <Navbar expand='lg' className='nav-bg'>
         <Container className='gridNavbar'>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <LinkContainer to='/'>

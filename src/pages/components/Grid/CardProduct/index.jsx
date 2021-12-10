@@ -32,7 +32,7 @@ export default function CardProduct({ id, img, title, price, category }) {
 
       <Container className='h-100 p-0 m-0'>
         <Link className='no-style' to={`/products/product/${id}`}>
-          <Card className=''>
+          <Card className='card-product'>
             <Card.Img
               src={img}
               variant='top'

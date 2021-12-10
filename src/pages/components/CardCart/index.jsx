@@ -26,7 +26,7 @@ export default function CardCart({
         <Card.Img className='card_image' variant='top' src={product.image} />
         <Card.Body className='card_body'>
           <Card.Title className='card_title'>{product.title}</Card.Title>
-          <Card.Text className='card_text'>USD {product.price}</Card.Text>
+          <Card.Text className='card_text'>BRL {product.price}</Card.Text>
           <div className='btns-card-cart-div'>
             <div className='btn-quantity'>
               <button

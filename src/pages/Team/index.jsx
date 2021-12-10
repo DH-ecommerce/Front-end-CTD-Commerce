@@ -82,7 +82,7 @@ function Team() {
             <title>NeoTech | Team</title>
           </Helmet>
           <Container className='d-flex flex-column align-items-center justify-content-center'>
-            <h2>Team</h2>
+            <h2 className='mt-4'>Team</h2>
             <Container className='col-md-12 col-lg-8'>
               <Row xs={2} md={3}>
                 {teammates.map((member, idx) => (
