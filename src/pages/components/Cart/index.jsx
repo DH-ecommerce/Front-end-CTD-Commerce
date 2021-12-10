@@ -1,6 +1,8 @@
 import './style.scss';
 import { Row, Col, Button } from 'react-bootstrap';
-
+import Swal from 'sweetalert2';
+import { ItemsContext } from '../../../hooks/ItemsProvider/ItemsProvider';
+import {useContext} from 'react'
 
 const totalPrice = (cartItems) =>
     Object.keys(cartItems).reduce(
@@ -16,25 +18,30 @@ const totalQuantity = (cartItems) =>
       0
     )
 
+const onCheckout = () => Swal.fire({
+  position: 'top',
+  icon: 'success',
+  title: 'Completed purchase',
+  showConfirmButton: false,
+  timer: 1500
+})
 
+export default function Cart() {
 
-export default function Cart({ items}) {
+  const {cartItemsList} = useContext(ItemsContext)
 
-  <style>
-
-  </style>
   return (
     <>
     <Row className='cart__total'>
       <Col xs={6}>
         <h6 className='total-quantity-h6'>
-          Total: {totalQuantity(items)}{' '}
-          {totalQuantity(items) < 2 ? 'item' : 'items'}
+          Total: {totalQuantity(cartItemsList)}{' '}
+          {totalQuantity(cartItemsList) < 2 ? 'item' : 'items'}
         </h6>
       </Col>
       <Col xs={6}>
         <h6 className='total-price-h6'>
-          <strong>BRL {totalPrice(items).toFixed(2)}</strong>
+          <strong>BRL {totalPrice(cartItemsList).toFixed(2)}</strong>
         </h6>
       </Col>
       <Col className="btn-col" xs={{span: 10, offset: 1 }} md={{span: 7, offset: 5}}>
@@ -60,9 +67,8 @@ export default function Cart({ items}) {
 
         `}
       </style>
-      <Button className="btn-checkout" variant="primary">
-        <span> Proceed to Checkout </span>
-        <span>  </span>
+      <Button onClick={onCheckout} className="btn-checkout" variant="primary">
+        <span> Checkout </span>
       </Button>
       </Col>
     </Row>
