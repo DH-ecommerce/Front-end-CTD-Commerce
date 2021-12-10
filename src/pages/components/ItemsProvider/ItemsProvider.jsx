@@ -1,13 +1,11 @@
 import React from 'react';
-import CardCart from '../components/CardCart';
-import List from '../components/List';
-import Cart from '../components/Cart';
-import { Helmet } from 'react-helmet-async';
-import './style.scss';
+import CardCart from '../CardCart'
 import { useState, useEffect, createContext } from 'react';
 import { Spinner } from 'react-bootstrap';
 
-export default function ShoppingCart({children}) {
+export const ItemsContext = createContext({});
+
+export default function ItemsProvider({children}) {
   const productsLocalStorage = JSON.parse(localStorage.getItem('products'));
 
   const productListReduce =
@@ -75,6 +73,7 @@ export default function ShoppingCart({children}) {
           },
         });
     }
+    
     let productsLocalStorage = JSON.parse(localStorage.getItem('products'));
     let arrIndex = productsLocalStorage.reduceRight((acc, crr, i)=>{
         if(crr.id === productId){
@@ -145,22 +144,8 @@ export default function ShoppingCart({children}) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cartItemsList]);
   return (
-    <>
-      {loading
-        ? <Loading />
-        : <>
-        
-          <Helmet>
-            <title>NeoTech |Shopping Cart</title>
-          </Helmet>
-          <div className='shop-cart-container'>
-            <List/>
-            <Cart/>
-          
-          </div>
-        </>
-      }
-    </>
-
+      <ItemsContext.Provider value={{cartItemsListEffect, cartItemsList}}>
+           {children}
+      </ItemsContext.Provider>
   );
 }

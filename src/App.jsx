@@ -3,9 +3,10 @@ import RouteList from './routes';
 
 function App() {
   return (
-    <ViewportProvider>
-      <RouteList />
-    </ViewportProvider>
+
+      <ViewportProvider>
+        <RouteList />
+      </ViewportProvider>
   );
 }
 

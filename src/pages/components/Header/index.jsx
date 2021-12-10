@@ -1,11 +1,15 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { CgShoppingCart } from 'react-icons/cg';
 import logo from '../../../assets/logo.svg';
 import './style.scss';
 import { LinkContainer } from 'react-router-bootstrap';
+import { ItemsContext } from '../ItemsProvider/ItemsProvider';
 
 export default function Header() {
+  const {cartItemsList} = useContext(ItemsContext)
+
+
   return (
     <>
       <Navbar expand='lg' className='my-3'>
@@ -20,7 +24,13 @@ export default function Header() {
             to='/shoppingCart'
             style={{ fontSize: '28px', cursor: 'pointer' }}
           >
-            <CgShoppingCart className='gridItem' />
+            <>
+              <CgShoppingCart className='gridItem' />
+              <p>
+                {Object.keys(cartItemsList).reduce(
+                (acc, productId) => acc += cartItemsList[productId].quantity, 0)}
+              </p>
+            </>
           </LinkContainer>
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='me-auto' as='ul'>
