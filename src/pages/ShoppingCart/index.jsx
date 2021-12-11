@@ -8,7 +8,6 @@ import { ItemsContext } from '../../hooks/ItemsProvider/ItemsProvider';
 
 export default function ShoppingCart() {
   const {cartItemsListEffect} = useContext(ItemsContext);
-  console.log(cartItemsListEffect)
   return (
     <>
           <Helmet>
