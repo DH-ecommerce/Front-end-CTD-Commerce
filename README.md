@@ -20,7 +20,7 @@ _________
 
 ## 💻 Sobre o projeto
 
-## Enunciado:
+## Requisitos:
 - Um site em HTML5, SASS, React-Bootstrap e React.
 - Utilize a API criada no trabalho de Back-end  para fornecer os dados necessários pro site.
 - O head deve variar de acordo com a página atual. Ex: Na página do produto leite ficaria: nomeDoProjeto | Leite
